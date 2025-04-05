@@ -8,7 +8,7 @@ import { ErrorBoxComponent } from '../../shared/error-box/error-box.component';
   selector: 'app-login-form',
   imports: [FormsModule, ErrorBoxComponent, RouterLink],
   templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.css'
+  styleUrl: './login-form.component.css',
 })
 export class LoginFormComponent {
   hasError: boolean = false;
