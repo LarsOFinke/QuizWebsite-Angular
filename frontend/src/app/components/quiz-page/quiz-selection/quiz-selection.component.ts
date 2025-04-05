@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SelectionService } from '../../../services/api/selection.service';
 
@@ -9,14 +9,38 @@ import { SelectionService } from '../../../services/api/selection.service';
   styleUrl: './quiz-selection.component.css',
 })
 export class QuizSelectionComponent implements OnInit {
+  private selectionService = inject(SelectionService);
+  private destroyRef = inject(DestroyRef);
+
   questionAmount: number = 10;
-  categories: [{ category: string; category_id: number }] = [{category: 'Keine gefunden!', category_id: -1}];
+  categories = signal<{
+    categories: [{ category: string; category_id: number }];
+  }>({ categories: [{ category: 'Keine gefunden!', category_id: -1 }] });
   topics: string[] = [];
 
-  constructor(private selectionService: SelectionService) {}
+  isFetching = signal(false);
+  error = signal('');
 
-  ngOnInit(): void {
-    this.categories = this.selectionService.fetchCategories();
+  constructor() {}
+
+  ngOnInit() {
+    this.isFetching.set(true);
+    const subscription = this.selectionService.fetchCategories().subscribe({
+      next: (categories) => {
+        console.log(categories);
+        this.categories.set(categories);
+      },
+      error: (error: Error) => {
+        this.error.set(error.message);
+      },
+      complete: () => {
+        this.isFetching.set(false);
+      },
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
   }
 
   onRangeChange(newValue: number) {

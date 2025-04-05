@@ -1,23 +1,32 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { api_url } from '../../../main';
-import { catchError, Observable } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SelectionService {
-  constructor(private httpClient: HttpClient) {}
+  private httpClient = inject(HttpClient);
 
-  fetchCategories(): any {
-    return this.httpClient.get(`${api_url}/get-categories`).subscribe({
-      next: (resData) => {
-        console.log(resData);
-      }
-    });
+  constructor() {}
+
+  fetchCategories() {
+    return this.httpClient
+      .get<{ categories: [{ category: string; category_id: number }] }>(
+        `${api_url}/get-categories`
+      )
+      .pipe(
+        map((resData) => resData),
+        catchError((error) => {
+          console.log(error);
+          return throwError(
+            () => new Error('Kategorien konnten nicht gefetcht werden!')
+          );
+        })
+      );
   }
 }
-
 
 // async function fetch_topics() {
 //   topics = [];
