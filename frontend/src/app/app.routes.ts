@@ -6,6 +6,7 @@ import { ImpressumPageComponent } from './components/impressum-page/impressum-pa
 import { ResultsPageComponent } from './components/results-page/results-page.component';
 import { HighscoresPageComponent } from './components/highscores-page/highscores-page.component';
 import { QuizPageComponent } from './components/quiz-page/quiz-page.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 export const routes: Routes = [
     {path: "", component: LoginPageComponent},
@@ -13,6 +14,7 @@ export const routes: Routes = [
     {path: "main-menu", component: MainMenuPageComponent},
     {path: "quiz", component: QuizPageComponent},
     {path: "results", component: ResultsPageComponent},
+    {path: "admin-panel", component: AdminPanelComponent},
     {path: "highscores", component: HighscoresPageComponent},
     {path: "impressum", component: ImpressumPageComponent},
 ];
