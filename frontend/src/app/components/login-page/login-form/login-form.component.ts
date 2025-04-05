@@ -2,11 +2,11 @@ import { Component, inject } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ErrorBoxComponent } from '../../shared/error-box/error-box.component';
+import { MessageBoxComponent } from '../../shared/message-box/message-box.component';
 
 @Component({
   selector: 'app-login-form',
-  imports: [FormsModule, ErrorBoxComponent, RouterLink],
+  imports: [FormsModule, MessageBoxComponent, RouterLink],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
 })

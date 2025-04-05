@@ -2,11 +2,11 @@ import { Component, inject } from '@angular/core';
 import { RegisterService } from '../../../services/register.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { ErrorBoxComponent } from '../../shared/error-box/error-box.component';
+import { MessageBoxComponent } from '../../shared/message-box/message-box.component';
 
 @Component({
   selector: 'app-register-form',
-  imports: [FormsModule, RouterLink, ErrorBoxComponent],
+  imports: [FormsModule, RouterLink, MessageBoxComponent],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css',
 })
