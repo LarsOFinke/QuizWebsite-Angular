@@ -1,0 +1,14 @@
+ul {
+  justify-content: space-evenly;
+  margin-top: 0.5rem;
+  position: relative;
+  float: right;
+}
+ul > li {
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+a {
+  font-size: 1.25rem;
+}

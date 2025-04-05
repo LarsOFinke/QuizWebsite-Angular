@@ -1,1 +1,18 @@
-<p>footer works!</p>
+<footer>
+  <div class="row centered">
+    <div class="info-text">
+      <p>©2025 Lars-O. Finke |</p>
+      <a
+        [routerLink]="['/impressum']"
+        routerLinkActive="router-link-active"
+        class="centered"
+        >Impressum</a
+      >
+    </div>
+
+    <div class="logos">
+      <app-git-hub-logo></app-git-hub-logo>
+      <app-linkedin-logo class="m-12px mr-24px"></app-linkedin-logo>
+    </div>
+  </div>
+</footer>

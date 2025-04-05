@@ -1,0 +1,11 @@
+.mobile-nav {
+  display: block;
+}
+
+/* VIEWPORT SWITCH */
+
+@media (min-width: 767px) {
+  .mobile-nav {
+    display: none;
+  }
+}

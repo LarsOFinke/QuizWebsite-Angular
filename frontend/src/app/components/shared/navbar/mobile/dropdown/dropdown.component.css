@@ -1,0 +1,45 @@
+.mobile-nav-dropdown {
+  float: right;
+}
+
+.mobile-nav-button {
+  font-size: 1.75rem;
+  color: var(--gold);
+  width: 50px;
+  height: 50px;
+  text-align: center;
+
+  float: right;
+  position: relative;
+}
+
+.mobile-nav-content {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  z-index: 1000;
+  display: none;
+  background: linear-gradient(
+    var(--dark-blue),
+    var(--navy-blue),
+    var(--dark-blue)
+  );
+  border-top: 2px solid var(--navy-blue);
+  width: fit-content;
+  height: fit-content;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+.mobile-nav-content ul {
+  padding-left: 0;
+}
+.mobile-nav-content li {
+  list-style-type: none;
+  padding: 0.3rem;
+  margin-bottom: 0.7rem;
+  background-color: var(--navy-blue);
+  text-align: center;
+}
+.mobile-nav-dropdown:hover > .mobile-nav-content {
+  display: block;
+}

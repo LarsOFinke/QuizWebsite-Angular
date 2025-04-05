@@ -1,5 +1,16 @@
-export const environment = {
-  production: false,
-  socket_url: 'ws://192.168.2.31:5000/',
-  api_url: 'http://192.168.2.31:5000/api/',
+import { testingEnvironment } from './environment.testing';
+import { productionEnvironment } from './environment.prod';
+
+const production = false;
+
+export let currentEnvironment: {
+  api_url: string;
+  contactInformation: string;
 };
+
+if (production) {
+  currentEnvironment = productionEnvironment;
+}
+if (!production) {
+  currentEnvironment = testingEnvironment;
+}

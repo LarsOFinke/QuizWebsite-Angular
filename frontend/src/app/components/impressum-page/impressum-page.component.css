@@ -1,0 +1,9 @@
+p {
+  line-height: 1.6;
+}
+
+@media (min-width: 1599px) {
+  .custom-wrapper {
+    width: 30%;
+  }
+}

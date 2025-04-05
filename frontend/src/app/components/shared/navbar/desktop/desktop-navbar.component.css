@@ -1,0 +1,18 @@
+/* ### NAVBAR DESKTOP ### */
+.desktop-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+/* VIEWPORT SWITCH */
+
+@media (min-width: 767px) {
+  .desktop-nav {
+    display: inline-block;
+  }
+}

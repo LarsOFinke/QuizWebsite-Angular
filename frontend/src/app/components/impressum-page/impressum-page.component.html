@@ -1,1 +1,22 @@
-<p>impressum-page works!</p>
+<div class="centered vh-90">
+  <div class="custom-wrapper centere">
+    <h2>Impressum der Webseite</h2>
+
+    <div class="centered bordered">
+      <section>
+        <h3>Kontakt</h3>
+        <p [innerHTML]="contactInformation"></p>
+      </section>
+
+      <section>
+        <h3>Haftungsausschluss</h3>
+        <p>{{ haftungsausschluss }}</p>
+      </section>
+
+      <section>
+        <h3>Urheberrecht</h3>
+        <p>{{ urheberrecht }}</p>
+      </section>
+    </div>
+  </div>
+</div>

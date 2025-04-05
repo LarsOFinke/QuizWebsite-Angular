@@ -1,1 +1,309 @@
-/* You can add global styles to this file, and also import other style files */
+/* ### VARIABLES ### */
+:root {
+  /* dark */
+  --dark-blue: #161638;
+  --navy-blue: #18206f;
+  --light-navy-blue: #1d2785;
+  --matt-blue: #1b435e;
+  --light-blue: #3d82a7;
+  --light-purp: #563457;
+  --dark-purp: #302442;
+  --grey: #cbcbd4;
+  --light-grey: #e8e8f0;
+  --gold: #d4af37;
+
+  /* light */
+  --yellow: #ffed00;
+  --yellow-orange: #f8b405;
+  --orange: #f17a0a;
+  --light-red: #ea400f;
+  --dark-red: #e30613;
+}
+
+/* ### DEFAULTS ### */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  min-width: fit-content;
+}
+body {
+  margin: 0;
+  min-width: 300px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--dark-blue),
+    var(--navy-blue),
+    var(--dark-blue)
+  );
+  color: var(--grey);
+  font-family: "Franklin Gothic Medium", "Roboto", Arial, sans-serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  text-align: center;
+}
+h1 {
+  font-size: 1.75rem;
+}
+@media (min-width: 1439px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+p {
+  font-size: 1rem;
+}
+
+/* ### GENERAL ### */
+
+/* LINK STYLE */
+a {
+  text-decoration: none;
+  font-size: 1.3rem;
+}
+a:link {
+  color: var(--gold);
+}
+a:hover {
+  color: var(--light-red);
+}
+a:active {
+  color: var(--dark-red);
+}
+a:visited {
+  color: var(--gold);
+}
+
+/* CLASSES */
+.clearfix {
+  content: "";
+  display: block;
+  clear: both;
+}
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.bordered {
+  border: 2px solid var(--grey);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+.custom-wrapper {
+  width: 90%;
+  height: fit-content;
+  padding: 2%;
+  margin: 2%;
+}
+.btn {
+  background-color: var(--navy-blue);
+  color: var(--grey);
+
+  font-size: 1rem;
+  font-weight: bold;
+
+  margin: 2%;
+
+  border: 2px solid var(--grey);
+  border-radius: 8px;
+}
+.btn:hover {
+  background-color: var(--light-blue);
+  color: white;
+}
+.btn-box {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0.5rem 0 0.5rem 0;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.vh-90 {
+  height: 90vh;
+}
+.vh-87 {
+  height: 87vh;
+}
+.vh-86 {
+  height: 86vh;
+}
+.vh-85 {
+  height: 85vh;
+}
+.vh-80 {
+  height: 80vh;
+}
+.m-12px {
+  margin: 12px;
+}
+.m-8px {
+  margin: 8px;
+}
+.mr-24px {
+  margin-right: 24px;
+}
+
+/* ### GRID-SYSTEM ### */
+.d-flex {
+  display: flex;
+}
+.row {
+  height: fit-content !important;
+  flex-direction: row !important;
+}
+.row::after {
+  content: "" !important;
+  clear: both !important;
+  display: block !important;
+}
+
+.col-100 {
+  width: 100% !important;
+}
+.col-95 {
+  width: 95%;
+}
+.col-90 {
+  width: 90% !important;
+}
+.col-85 {
+  width: 85%;
+}
+.col-80 {
+  width: 80% !important;
+}
+.col-75 {
+  width: 75%;
+}
+.col-70 {
+  width: 70%;
+}
+.col-66 {
+  width: 66.666% !important;
+}
+.col-60 {
+  width: 60% !important;
+}
+.col-50 {
+  width: 50% !important;
+}
+.col-40 {
+  width: 40% !important;
+}
+.col-33 {
+  width: 33.333% !important;
+}
+.col-30 {
+  width: 30%;
+}
+.col-25 {
+  width: 25%;
+}
+.col-20 {
+  width: 20% !important;
+}
+.col-15 {
+  width: 15%;
+}
+.col-10 {
+  width: 10% !important;
+}
+.col-5 {
+  width: 5%;
+}
+
+.wrapper [class*="col-"] {
+  float: left;
+  min-height: 1px;
+  padding: 0.8rem;
+}
+
+/*### MEDIA-QUERIES ###*/
+
+@media (min-width: 370px) {
+  .col-50 input {
+    width: 20ch;
+  }
+}
+
+@media (min-width: 500px) {
+  .custom-wrapper {
+    width: 80%;
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-wrapper {
+    width: 80%;
+  }
+
+  video {
+    max-width: 50%;
+  }
+
+  .col-50 input {
+    font-size: 1.2rem;
+    width: fit-content;
+  }
+
+  #contact-form {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-wrapper {
+    width: 60%;
+    padding: 2%;
+  }
+
+  .col-50 input {
+    font-size: 1rem;
+  }
+
+  #contact-form {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1399px) {
+  body {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 1.15rem;
+  }
+
+  .custom-wrapper {
+    width: 50%;
+  }
+
+  #contact-form {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .custom-wrapper {
+    width: 40%;
+  }
+
+  #contact-form {
+    width: 30%;
+  }
+}

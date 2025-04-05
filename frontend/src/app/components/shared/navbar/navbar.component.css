@@ -1,0 +1,38 @@
+/* ### NAVBAR GENERAL ### */
+nav {
+  position: static;
+  top: 0;
+  width: 100%;
+  height: 52px;
+  background: linear-gradient(
+    var(--dark-blue),
+    var(--navy-blue),
+    var(--dark-blue)
+  );
+  opacity: 1;
+  z-index: 1000;
+}
+h2 {
+  float: left;
+  margin: 0.5rem 0 0 2rem;
+  padding: 0.25rem;
+  text-decoration: underline;
+}
+
+.mobile-nav-component {
+  display: block;
+}
+.desktop-nav-component {
+  display: none;
+}
+
+/* VIEWPORT SWITCH */
+
+@media (min-width: 767px) {
+  .mobile-nav-component {
+    display: none;
+  }
+  .desktop-nav-component {
+    display: inline-block;
+  }
+}
