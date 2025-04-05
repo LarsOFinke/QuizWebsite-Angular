@@ -4,7 +4,7 @@
 
   <hr />
 
-  <label>Anzahl Fragen: {{questionAmount}}</label>
+  <label>Anzahl Fragen: {{ questionAmount }}</label>
   <label id="qamount-label"></label>
   <input
     type="range"
@@ -19,8 +19,11 @@
 
   <form class="centered">
     <label for="category">Kategorie:</label>
-    <select id="category" onchange="updateTopics()">
+    <select id="category">
       <option id="cat_def_opt">-- Bitte wählen! --</option>
+      @for (category of categories; track category.category_id) {
+      <option [value]="category.category_id">{{ category.category }}</option>
+      }
     </select>
     <button class="btn-small" onclick="startCategory()">
       Spiel' eine Kategorie!
