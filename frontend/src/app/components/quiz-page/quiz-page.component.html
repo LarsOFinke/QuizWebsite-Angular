@@ -1,3 +1,7 @@
-@if (!quizStarted) {
+@if (!quizStarted && !quizFinished) {
     <app-quiz-selection></app-quiz-selection>
+} @if (quizStarted && !quizFinished) {
+    <app-quiz-game></app-quiz-game>
+} @if (quizStarted && quizFinished) {
+    <app-quiz-results></app-quiz-results>
 }
