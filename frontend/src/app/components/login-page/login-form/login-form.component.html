@@ -1,7 +1,7 @@
 <!-- LOGIN-FORM -->
 
 <form (ngSubmit)="login()">
-  <h1>Login</h1>
+  <h2>Bitte einloggen.</h2>
 
   @if (hasError) {
   <app-error-box [message]="message"></app-error-box>
@@ -37,7 +37,7 @@
     </label>
   </div>
 
-  <button type="submit" id="login-button" class="btn">Einloggen</button>
+  <button type="submit" id="login-button" class="btn">Login</button>
 
   <div class="register-link">
     <p>

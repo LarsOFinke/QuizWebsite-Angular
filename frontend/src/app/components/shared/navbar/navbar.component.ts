@@ -31,23 +31,27 @@ export class NavbarComponent implements OnInit {
   private updateHeaderBasedOnRoute() {
     switch (this.path) {
       case '':
-        this.header = 'Über mich';
+        this.header = 'Login';
         break;
 
-      case 'projects':
-        this.header = 'Projekte';
+      case 'register':
+        this.header = 'Registrierung';
         break;
 
-      case 'qualifications':
-        this.header = 'Qualifikationen';
+      case 'main-menu':
+        this.header = 'Hauptmenü';
         break;
 
-      case 'contact':
-        this.header = 'Kontakt';
+      case 'quiz':
+        this.header = 'Quiz';
         break;
 
-      case 'impressum':
-        this.header = 'Impressum';
+      case 'results':
+        this.header = 'Ergebnisse';
+        break;
+
+      case 'highscores':
+        this.header = 'Highscores';
         break;
 
       default:

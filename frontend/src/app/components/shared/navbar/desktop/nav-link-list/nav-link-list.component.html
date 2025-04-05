@@ -1,8 +1,13 @@
 <ul>
-  <li class="bordered"><a href="/">Über mich</a></li>
-  <li class="bordered"><a href="/projects">Projekte</a></li>
   <li class="bordered">
-    <a href="/qualifications">Qualifikationen</a>
+    <a [routerLink]="['/']" routerLinkActive="active">Startseite</a>
   </li>
-  <li class="bordered"><a href="/contact">Kontakt</a></li>
+  <li class="bordered">
+    <a [routerLink]="['/main-menu']" routerLinkActive="active">Hauptmenü</a>
+  </li>
+  <li class="bordered">
+    <a [routerLink]="['/highscores']" routerLinkActive="active"
+      >Highscores</a
+    >
+  </li>
 </ul>
