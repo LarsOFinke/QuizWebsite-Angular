@@ -9,30 +9,6 @@ from .db.crud import (add_category, get_all_categories,
 views = Blueprint('views', __name__)
 
 
-
-@views.route("/")
-def home():
-    if "username" in session:
-        return redirect(url_for("views.selection"))
-    
-    return render_template("login.html")
-
-
-@views.route('/selection')
-def selection():
-    return render_template('selection.html')
-
-
-@views.route('/quiz')
-def quiz():
-    return render_template('quiz.html')
-
-
-@views.route('/quizresult')
-def quiz_result(): 
-    return render_template('quiz_result.html')
-
-
 @views.route("/quizresult/details/<question_index>")
 def quiz_result_details(question_index: str):
     question_id: int = int(question_index)-1
@@ -231,9 +207,4 @@ def quizdb_editquestions():
 
 
     return render_template('quizdb_edit_questions.html', categories=categories)
-
-
-@views.route('/highscores')
-def highscores():
-    return render_template('highscores.html')
 

@@ -86,6 +86,9 @@ a:visited {
   display: block;
   clear: both;
 }
+.main-container {
+  height: 87.5vh;
+}
 .centered {
   display: flex;
   flex-direction: column;
