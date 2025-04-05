@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_session import Session
+from flask_cors import CORS
 from dotenv import load_dotenv
 from os import getenv, path, mkdir
 from datetime import timedelta
@@ -40,5 +41,7 @@ def create_app():
     app.permanent_session_lifetime = timedelta(minutes=5000)
     
     Session(app)
+    
+    CORS(app)
     
     return app

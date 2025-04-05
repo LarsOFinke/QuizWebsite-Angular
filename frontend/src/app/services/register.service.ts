@@ -12,6 +12,6 @@ export class RegisterService {
   register(username: string, password: string) {
     const payload = { username, password }; // Create the payload object
 
-    return this.httpClient.post(`${api_url}auth/register`, payload); // Send a POST request with the payload
+    return this.httpClient.post(`${api_url}/auth/register`, payload); // Send a POST request with the payload
   }
 }
