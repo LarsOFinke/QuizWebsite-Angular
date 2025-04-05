@@ -4,11 +4,7 @@ nav {
   top: 0;
   width: 100%;
   height: 52px;
-  background: linear-gradient(
-    var(--navy-blue),
-    var(--light-blue),
-    var(--navy-blue)
-  );
+  background: var(--background-color);
   opacity: 1;
   z-index: 1000;
 }

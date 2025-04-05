@@ -1,5 +1,18 @@
 /* ### VARIABLES ### */
 :root {
+  --background-color: linear-gradient(
+    var(--navy-blue),
+    var(--light-blue),
+    var(--navy-blue)
+  );
+  --background-color-90deg: linear-gradient(
+    90deg,
+    var(--navy-blue),
+    var(--light-blue),
+    var(--navy-blue)
+  );
+
+  /*### RAW COLORS ###*/
   /* dark */
   --dark-blue: #161638;
   --navy-blue: #18206f;

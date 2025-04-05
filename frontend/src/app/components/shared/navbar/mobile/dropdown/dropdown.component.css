@@ -19,12 +19,7 @@
   top: 50px;
   z-index: 1000;
   display: none;
-  background: linear-gradient(
-    90deg,
-    var(--navy-blue),
-    var(--light-blue),
-    var(--navy-blue)
-  );
+  background: var(--background-color-90deg);
   border-top: 2px solid var(--navy-blue);
   width: fit-content;
   height: fit-content;
