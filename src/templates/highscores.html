@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/highscores.css') }}">    
+{% endblock %}
+
+{% block content %}
+
+    <!-- HIGHSCORES-SELECTOR -->
+    <div class="wrapper centered">
+        <div class="header centered">
+        <h1>Highscores</h1>
+        </div>
+        <br>
+
+        <div class="select-wrapper">
+            <form>
+                <label for="mode">Ranking:</label>
+                <select id="mode" onchange="updateMode(event)">
+                    <option>-- Spielmodus --</option>
+                    <option value="full">Alle Bereiche</option> 
+                    <option value="categ">Kategorie</option>
+                    <option value="topic">Thema</option>
+                </select>
+            </form>
+
+            <form>
+                <label for="category">Kategorie:</label>
+                <select id="category" onchange="updateTopics(event)">
+                </select>
+            </form>
+
+            <form>
+                <label for="topic">Themen:</label>
+                <select id="topic" onchange="getTopicHighscores(event)">
+                </select>
+            </form>
+        </div>
+
+
+    <!-- HIGHSCORES TABLE -->
+        <div class="scroll-container centered bordered">
+            <table>
+                <tr>
+                    <th>Spieler</th>
+                    <th>Punktzahl</th>
+                    <th>Datum</th>
+                </tr>
+            </table>
+        </div>
+
+    </div>    
+
+{% endblock %}
+
+
+{% block script %}
+<script src="{{ url_for('static', filename='script/highscores.js') }}" defer></script>
+{% endblock %}

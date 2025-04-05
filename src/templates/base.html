@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Website</title>
+
+    <!-- STYLESHEETS -->
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/style.css') }}">
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='style/base.css') }}">
+    {% block styles %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <!-- ### NAVBAR ### -->
+    <nav>
+
+        <!-- DESKTOP -->
+        <div class="desktop-nav">
+            <ul>
+                {% if not session.login_confirmed %}
+                    <li><a class="navbar-items" href="/">Startseite</a></li>
+                {% else %}
+                    <li><a class="navbar-items" href="/selection">Quiz-Auswahl</a></li>
+                {% endif %}
+
+                {% if session.is_admin %}
+                    <li><a class="navbar-items" href="/quizdb/addcatstops">Kategorien/Themen hinzufügen</a></li>
+                    <li><a class="navbar-items" href="/quizdb/addquestions">Fragen hinzufügen</a></li>
+                    <li><a class="navbar-items" href="/quizdb/editquestions">Fragen bearbeiten</a></li>
+                {% endif %}
+
+                    <li><a class="navbar-items" href="/highscores">Highscores</a></li>
+
+                {% if session.username %}
+                    <li><a class="navbar-items" href="/api/auth/clear-session">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <!-- MOBILE-NAVIGATION -->
+        <div class="mobile-nav">
+
+            <div class="mobile-nav-dropdown clearfix">
+                <div class="mobile-nav-button"><span>&equiv;</span></div>
+
+                <div class="mobile-nav-content clearfix">
+                    <ul>
+                        {% if not session.login_confirmed %}
+                            <li><a class="navbar-items" href="/">Startseite</a></li>
+                        {% else %}
+                            <li><a class="navbar-items" href="/selection">Quiz-Auswahl</a></li>
+                        {% endif %}
+
+                        {% if session.is_admin %}
+                            <li><a class="navbar-items" href="/quizdb/addcatstops">Kategorien/Themen hinzufügen</a></li>
+                            <li><a class="navbar-items" href="/quizdb/addquestions">Fragen hinzufügen</a></li>
+                            <li><a class="navbar-items" href="/quizdb/editquestions">Fragen bearbeiten</a></li>
+                        {% endif %}
+
+                            <li><a class="navbar-items" href="/highscores">Highscores</a></li>
+
+                        {% if session.username %}
+                            <li><a class="navbar-items" href="/api/auth/clear-session">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </nav>
+
+                
+    {% block content %}
+    {% endblock %}
+            
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2024 Lars-Oliver Finke & Bojan Bader. Alle Rechte vorbehalten.</p>
+    </footer>
+
+
+    <!-- SCRIPTS -->
+    <script src="{{ url_for('static', filename='script/general.js') }}" defer></script>
+    {% block script %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Fragen hinzufügen</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <!-- BENACHRICHTIGUNG -->
+            <div class="flash-success">
+                {% for msg in messages %}
+                    <p>{{msg}}</p>
+                {% endfor %}
+            </div>  
+            {% endif %}
+        {% endwith %}
+
+
+
+        <!-- ADMIN-FRAGEN-HINZUFÜGEN -->
+        <div class="form">
+            <form method="POST">
+                <div>
+                    <label for="category">Kategorie:</label>
+                    <select name="category" id="category" onchange="this.form.submit()">
+                        {% if not session.db_selected_category %}
+                            <option value="">-- Wähle eine Kategorie --</option>
+                        {% else %}
+                            <option value="{{ session.db_category_id }}">{{session.db_selected_category}}</option>
+                        {% endif %}
+
+                        {% for category, category_id in categories.items() %}
+                            <option value="{{ category_id }}">{{ category }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+            
+
+            <form method="POST">
+                <div>
+                    <label for="topic" id="topic">Thema:</label>
+                    <select name="topic" id="topic" onchange="this.form.submit()">
+                        {% if not session.db_selected_topic %}
+                            <option value="-- Wähle ein Thema --"></option>
+                        {% else %}
+                            <option value="{{ session.db_topic_id }}">{{session.db_selected_topic}}</option>
+                        {% endif %}
+
+                        {% if topics %}
+                            {% for topic, topic_id in topics.items() %}
+                                <option value="{{ topic_id }}">{{ topic }}</option>
+                            {% endfor %}
+                        {% endif %}
+                    </select>
+                </div>
+
+                <div>
+                    <label for="question" id="question">Frage:</label>
+                    <input type="text" name="question" >
+                </div>
+
+                <div>
+                    <label for="answer1">Antwort 1:</label>
+                    <input type="text" name="answer1" id="answer1">
+                </div>
+
+                <div>
+                    <label for="answer2">Antwort 2:</label>
+                    <input type="text" name="answer2" id="answer2">
+                </div>
+
+                <div>
+                    <label for="answer3">Antwort 3:</label>
+                    <input type="text" name="answer3" id="answer3">
+                </div>
+
+                <div>
+                    <label for="answer4">Antwort 4:</label>
+                    <input type="text" name="answer4" id="answer4">
+                </div>
+
+                <div>
+                    <label for="correct">Richtig:</label>
+                    <select type="number" name="correct" id="correct">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+
+                <div class="btn-box">
+                    <button type="reset" class="btn primary">Clear</button>
+                    <button type="submit" name="quiz_db" value="add" class="btn primary">Frage hinzufügen</button>
+                </div>
+            </form>
+        </div>
+{% endblock %}

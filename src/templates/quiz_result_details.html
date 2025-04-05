@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style/quiz_result_details.css') }}">
+{% endblock %}
+
+
+{% block content %}
+    <!-- QUIZ-DETAILS -->
+    <div class="wrapper centered">
+        <div class="centered bordered w100 question">
+            <label for="question"><u>Frage:</u></label>
+            <p id="question"></p>
+        </div>
+
+        <br>
+
+        <div class="centered bordered w100">
+            <label for="answer1"><u>Antwort 1:</u></label>
+            <p id="answer1"></p>
+        </div>
+
+        <br>
+
+        <div class="centered bordered w100">
+            <label for="answer2"><u>Antwort 2:</u></label>
+            <p id="answer2"></p>
+        </div>
+
+        <br>
+
+        <div class="centered bordered w100">
+            <label for="answer3"><u>Antwort 3:</u></label>
+            <p id="answer3"></p>
+        </div>
+
+        <br>
+
+        <div class="centered bordered w100">
+            <label for="answer4"><u>Antwort 4:</u></label>
+            <p id="answer4"></p>
+        </div>
+
+        <br>
+
+        <div class="centered bordered w100">
+            <label for="answerRight"><u>Richtige Antwort:</u></label>
+            <p id="answerRight"></p>
+        </div>
+
+        <br>
+
+        <div class="centered bordered w100">
+            <label for="answerUser"><u>Deine Antwort:</u></label>
+            <p id="answerUser"></p>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+<script> const question_id = "{{ question_id }}"; </script>
+<script src="{{ url_for('static', filename='script/quiz_result_details.js') }}" defer></script>
+{% endblock %}
+    

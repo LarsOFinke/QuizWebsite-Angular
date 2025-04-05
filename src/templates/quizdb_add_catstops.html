@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>hinzufügen Kategorie / Thema</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <!-- BENACHRICHTIGUNG -->
+        <div class="flash-success">
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        </div>  
+        {% endif %}
+    {% endwith %}
+    
+
+    <!-- ADMIN-NEUE-KATEGORIE/THEMA -->
+    <div class="form">
+        <form action="" method="POST">
+            <div>
+                <label for="new_category">Neue Kategorie:</label>
+                <input type="text" id="new_category" name="new_category">
+            </div>
+
+            <hr>
+
+            <div class="btn-box">
+                <button type="reset" class="btn primary">Clear</button>
+                <button type="submit" class="btn primary" name="catstops" value="category">Kategorie hinzufügen</button>
+            </div>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="form">
+        <form action="" method="POST">
+            <div>
+                <label for="category">Kategorie:</label>
+                <select name="category" id="category" onchange="this.form.submit()">
+                    <option value="">{% if not session.db_selected_category %}-- Wähle eine Kategorie --{% else %}{{session.db_selected_category}} {% endif %}</option>
+                    {% for category, category_id in categories.items() %}
+                        <option value="{{ category_id }}">{{ category }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label for="new_topic">Neues Thema:</label>
+                <input type="text" id="new_topic" name="new_topic">
+            </div>
+
+            <hr>
+
+            <div class="btn-box">
+                <button type="reset" class="btn primary">Clear</button>
+                <button type="submit" class="btn primary" name="catstops" value="topic">Thema hinzufügen</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
