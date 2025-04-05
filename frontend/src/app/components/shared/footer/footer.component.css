@@ -6,9 +6,9 @@ footer {
   font-size: 0.9rem;
   width: 100%;
   background: linear-gradient(
-    var(--dark-blue),
     var(--navy-blue),
-    var(--dark-blue)
+    var(--light-blue),
+    var(--navy-blue)
   );
   border-top: 1px solid gray;
   margin-top: 1.5%;
