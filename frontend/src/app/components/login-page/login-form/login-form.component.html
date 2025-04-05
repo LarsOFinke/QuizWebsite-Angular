@@ -1,9 +1,7 @@
 <!-- LOGIN-FORM -->
 
 <form (ngSubmit)="login()">
-  <br class="spacer" />
   <h1>Login</h1>
-  <br class="spacer" />
 
   @if (hasError) {
   <app-error-box [message]="message"></app-error-box>
@@ -28,7 +26,6 @@
     />
   </div>
 
-  <br class="spacer" />
   <div id="show-password">
     <label
       >Passwort anzeigen
@@ -39,7 +36,6 @@
       />
     </label>
   </div>
-  <br class="spacer" />
 
   <button type="submit" id="login-button" class="btn">Einloggen</button>
 
