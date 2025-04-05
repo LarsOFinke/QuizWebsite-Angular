@@ -1,38 +1,45 @@
 <!-- SELECTION-BEREICH -->
 <div class="wrapper centered">
+  <h1>Werde zum Quiz-Hunter</h1>
 
-    <h1>Werde zum Quiz-Hunter</h1>
-    
-    <hr>
+  <hr />
 
-    <label>Anzahl Fragen:</label>
-    <label id="qamount-label"></label>
-    <input type="range" min="1" max="30" value="10" step="1" id="qamount" oninput="updateAmountLabel()">
+  <label>Anzahl Fragen: {{questionAmount}}</label>
+  <label id="qamount-label"></label>
+  <input
+    type="range"
+    min="1"
+    max="30"
+    step="1"
+    [(ngModel)]="questionAmount"
+    (ngModelChange)="onRangeChange($event)"
+  />
 
-    <hr>
+  <hr />
 
-    <form class="centered">
-        <label for="category">Kategorie:</label>
-        <select id="category" onchange="updateTopics()">
-            <option id="cat_def_opt">-- Bitte wählen! --</option>
-        </select>
-        <button class="btn-small" onclick="startCategory()">Spiel' eine Kategorie!</button>
-    </form>
-    
-    <hr>
-    
-    <form class="centered">
-        <label for="topic">Thema:</label>
-        <select id="topic">
-            <option>-- Kategorie fehlt! --</option>
-        </select>
-        <button class="btn-small" onclick="startTopic()">Spiel' ein Thema!</button>
-    </form>
+  <form class="centered">
+    <label for="category">Kategorie:</label>
+    <select id="category" onchange="updateTopics()">
+      <option id="cat_def_opt">-- Bitte wählen! --</option>
+    </select>
+    <button class="btn-small" onclick="startCategory()">
+      Spiel' eine Kategorie!
+    </button>
+  </form>
 
-    <hr>
+  <hr />
 
-    <form class="centered">
-        <button class="btn-small" onclick="startFull()">Alle Bereiche!</button>
-    </form>
+  <form class="centered">
+    <label for="topic">Thema:</label>
+    <select id="topic">
+      <option>-- Kategorie fehlt! --</option>
+    </select>
+    <button class="btn-small" onclick="startTopic()">Spiel' ein Thema!</button>
+  </form>
 
+  <hr />
+
+  <form class="centered">
+    <button class="btn-small" onclick="startFull()">Alle Bereiche!</button>
+  </form>
 </div>
