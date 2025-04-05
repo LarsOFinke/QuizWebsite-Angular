@@ -4,8 +4,16 @@ import { Component } from '@angular/core';
   selector: 'app-quiz-selection',
   imports: [],
   templateUrl: './quiz-selection.component.html',
-  styleUrl: './quiz-selection.component.css'
+  styleUrl: './quiz-selection.component.css',
 })
 export class QuizSelectionComponent {
+  updateAmountLabel() {}
 
+  updateTopics() {}
+
+  startCategory() {}
+
+  startTopic() {}
+
+  startFull() {}
 }
