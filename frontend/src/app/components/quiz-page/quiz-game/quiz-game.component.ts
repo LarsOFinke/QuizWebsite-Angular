@@ -12,13 +12,11 @@ export class QuizGameComponent implements OnInit {
 
   questionList: any = [];
   currentQuestionIndex: number = 0;
-
   question = signal('');
   answer1 = signal('');
   answer2 = signal('');
   answer3 = signal('');
   answer4 = signal('');
-
 
   ngOnInit(): void {
     this.questionList = this.quizService.questions.questions;
@@ -27,28 +25,28 @@ export class QuizGameComponent implements OnInit {
     this.rotateQuestion();
   }
 
+  async endQuiz() {
+    await this.quizService.processQuizEnd();
+  }
+
   rotateQuestion() {
     this.question.set(
       this.questionList[this.currentQuestionIndex].questionText
     );
-    this.answer1.set(
-      this.questionList[this.currentQuestionIndex].answers[0]
-    );
-    this.answer2.set(
-      this.questionList[this.currentQuestionIndex].answers[1]
-    );
-    this.answer3.set(
-      this.questionList[this.currentQuestionIndex].answers[2]
-    );
-    this.answer4.set(
-      this.questionList[this.currentQuestionIndex].answers[3]
-    );
+    this.answer1.set(this.questionList[this.currentQuestionIndex].answers[0]);
+    this.answer2.set(this.questionList[this.currentQuestionIndex].answers[1]);
+    this.answer3.set(this.questionList[this.currentQuestionIndex].answers[2]);
+    this.answer4.set(this.questionList[this.currentQuestionIndex].answers[3]);
   }
 
   answerQuestion(choice: number) {
     this.quizService.setPlayerAnswer(this.currentQuestionIndex, choice);
-
-    this.rotateQuestion();
     this.currentQuestionIndex++;
+
+    if (this.currentQuestionIndex >= this.questionList.length) {
+      this.endQuiz();
+    } else {
+      this.rotateQuestion();
+    }
   }
 }

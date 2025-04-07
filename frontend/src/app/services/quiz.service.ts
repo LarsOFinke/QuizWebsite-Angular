@@ -9,6 +9,11 @@ import { catchError, map, throwError } from 'rxjs';
 export class QuizService {
   private httpClient = inject(HttpClient);
   questions: any = [];
+  gameMode: string = '';
+  username: string = '';
+  categoryId: number = 0;
+  topicId: number = 0;
+  result: any = 0;
 
   constructor() {}
 
@@ -57,9 +62,34 @@ export class QuizService {
     } catch (error) {
       console.error('Error occurred:', error);
     }
+
+    this.gameMode = mode;
+    if (mode === 'category') {
+      this.categoryId = modeId;
+    } else if (mode === 'topic') {
+      this.topicId = modeId;
+    }
   }
 
   setPlayerAnswer(qIndex: number, choice: number) {
     this.questions.questions[qIndex].answerUser = choice;
+  }
+
+  async processQuizEnd() {
+    try {
+      const response = await this.httpClient
+        .post(`${api_url}/process-quiz-result`, {
+          question_list: this.questions,
+          game_mode: this.gameMode,
+          username: this.username,
+          category_id: this.categoryId,
+          topic_id: this.topicId,
+        })
+        .toPromise();
+      this.result = response;
+      console.log(this.result);
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
   }
 }
