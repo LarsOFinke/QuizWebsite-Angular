@@ -25,7 +25,7 @@
       <option [value]="category.category_id">{{ category.category }}</option>
       }
     </select>
-    <button class="btn" onclick="startCategory()">
+    <button class="btn" (click)="startCategory()">
       Spiel' eine Kategorie!
     </button>
   </form>
@@ -37,12 +37,12 @@
     <select id="topic">
       <option>Kategorie fehlt!</option>
     </select>
-    <button class="btn" onclick="startTopic()">Spiel' ein Thema!</button>
+    <button class="btn" (click)="startTopic()">Spiel' ein Thema!</button>
   </form>
 
   <hr />
 
   <form class="centered">
-    <button class="btn" onclick="startFull()">Alle Bereiche!</button>
+    <button class="btn" (click)="startFull()">Alle Bereiche!</button>
   </form>
 </div>
