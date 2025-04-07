@@ -35,7 +35,12 @@
   <form class="centered">
     <label for="topic">Thema:</label>
     <select id="topic">
-      <option>Kategorie fehlt!</option>
+      @if (categorySelected) { @for (topic of topics().topics; track
+      topic.topic_id) {
+      <option [value]="topic.topic_id">{{ topic.topic }}</option>
+      } } @else {
+      <option [value]="">Kategorie wählen!</option>
+      }
     </select>
     <button class="btn" (click)="startTopic()">Spiel' ein Thema!</button>
   </form>
