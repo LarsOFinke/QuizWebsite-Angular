@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectionService } from '../../../services/api/selection.service';
+import { QuizService } from '../../../services/quiz.service';
 
 @Component({
   selector: 'app-quiz-selection',
@@ -9,7 +9,7 @@ import { SelectionService } from '../../../services/api/selection.service';
   styleUrl: './quiz-selection.component.css',
 })
 export class QuizSelectionComponent implements OnInit {
-  private selectionService = inject(SelectionService);
+  private quizService = inject(QuizService);
   private destroyRef = inject(DestroyRef);
 
   questionAmount: number = 10;
@@ -24,7 +24,7 @@ export class QuizSelectionComponent implements OnInit {
 
   topics = signal<{
     topics: [{ category_id: number; topic: string; topic_id: number }];
-  }>({ topics: [{ category_id: -1, topic: 'Keine gefunden!', topic_id:  0 }] });
+  }>({ topics: [{ category_id: -1, topic: 'Keine gefunden!', topic_id: 0 }] });
   availableTopics: [{ category_id: number; topic: string; topic_id: number }] =
     [{ category_id: -1, topic: 'Keine verfügbar!', topic_id: 0 }];
   topicSelected = false;
@@ -39,7 +39,7 @@ export class QuizSelectionComponent implements OnInit {
 
   ngOnInit() {
     this.isFetching.set(true);
-    const categories = this.selectionService.fetchCategories().subscribe({
+    const categories = this.quizService.fetchCategories().subscribe({
       next: (categories) => {
         this.categories.set(categories);
       },
@@ -48,7 +48,7 @@ export class QuizSelectionComponent implements OnInit {
       },
     });
 
-    const topics = this.selectionService.fetchTopics().subscribe({
+    const topics = this.quizService.fetchTopics().subscribe({
       next: (topics: {
         topics: [{ category_id: number; topic: string; topic_id: number }];
       }) => {
@@ -84,9 +84,11 @@ export class QuizSelectionComponent implements OnInit {
             if (category.category_id === this.selectedCategoryId) {
               this.selectedCategoryName = category.category;
 
-              console.log("topics:", this.topics.call(this.topics).topics);
+              console.log('topics:', this.topics.call(this.topics).topics);
 
-              this.availableTopics = [{ category_id: -1, topic: 'Bitte wählen!', topic_id: 0 }];
+              this.availableTopics = [
+                { category_id: -1, topic: 'Bitte wählen!', topic_id: 0 },
+              ];
               this.availableTopics.pop();
               this.topics.call(this.topics).topics.forEach((topic) => {
                 if (topic.category_id === this.selectedCategoryId) {
@@ -94,7 +96,7 @@ export class QuizSelectionComponent implements OnInit {
                 }
               });
 
-              console.log("available topics:", this.availableTopics);
+              console.log('available topics:', this.availableTopics);
             }
           }
         );
@@ -116,9 +118,46 @@ export class QuizSelectionComponent implements OnInit {
     }
   }
 
-  startCategory() {}
+  startCategory() {
+    this.quizService.fetchQuestions(
+      'category',
+      this.selectedCategoryId,
+      this.questionAmount
+    );
+  }
 
   startTopic() {}
 
   startFull() {}
 }
+
+// function startCategory(event) {
+//   category_id = parseInt(category_id);
+
+//   fetchQuestions('category', category_id).then((question_list) => {
+//     localStorage.setItem('question_list', JSON.stringify(question_list));
+//     window.location.href = '/quiz';
+//   });
+// }
+
+// function startTopic(event) {
+//   event.preventDefault();
+
+//   let topic_id = document.getElementById('topic').value;
+//   localStorage.setItem('topic_id', topic_id);
+//   topic_id = parseInt(topic_id);
+
+//   fetchQuestions('topic', topic_id).then((question_list) => {
+//     localStorage.setItem('question_list', JSON.stringify(question_list));
+//     window.location.href = '/quiz';
+//   });
+// }
+
+// function startFull(event) {
+//   event.preventDefault();
+
+//   fetchQuestions('full').then((question_list) => {
+//     localStorage.setItem('question_list', JSON.stringify(question_list));
+//     window.location.href = '/quiz';
+//   });
+// }

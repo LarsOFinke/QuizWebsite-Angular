@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RegisterService } from '../../../services/api/register.service';
+import { RegisterService } from '../../../services/register.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MessageBoxComponent } from '../../shared/message-box/message-box.component';

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { LoginService } from '../../../services/api/login.service';
+import { LoginService } from '../../../services/login.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MessageBoxComponent } from '../../shared/message-box/message-box.component';

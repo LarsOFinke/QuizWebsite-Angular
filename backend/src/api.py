@@ -38,19 +38,26 @@ def get_questions():
                                     # "mode": "mode",   -> str: str
                                     # "id": id  - > str: int
                                     # }
+    print(data)
 
     question_amount: int = int(data.get("question_amount")) 
     
+    questions: dict = {}
     match data.get("mode"):
         case "full":
-            questions: dict = get_all_questions()
+            questions.update(get_all_questions())
             question_list: list[dict] = provide_questions(questions)
         
         case "category":    ### IMPLEMENT THIS ###
-            topics: dict = get_topics_by_category(data.get("id"))
+            topics: dict = get_topics_by_category(data.get("modeId"))
+            
+            for topic_id, topic in topics.items():
+                questions.update(get_questions_by_topic(topic_id))
+            
+            question_list: list[dict] = provide_questions(questions)
         
         case "topic":
-            questions: dict = get_questions_by_topic(data.get("id"))
+            questions.update(get_questions_by_topic(data.get("modeId")))
             question_list: list[dict] = provide_questions(questions)
         
     question_list = prepare_question_list(question_list, question_amount)
