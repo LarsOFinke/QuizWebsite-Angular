@@ -50,7 +50,7 @@ export class QuizSelectionComponent implements OnInit {
     });
 
     const topics = this.selectionService.fetchTopics().subscribe({
-      next: (topics) => {
+      next: (topics: { topics: [{ topic: string; topic_id: number }] }) => {
         this.topics.set(topics);
       },
       error: (error: Error) => {
@@ -82,6 +82,9 @@ export class QuizSelectionComponent implements OnInit {
           (category: { category: string; category_id: number }) => {
             if (category.category_id === this.selectedCategoryId) {
               this.selectedCategoryName = category.category;
+
+              console.log(this.topics.call(this.topics).topics);
+              console.log(this.availableTopics);
             }
           }
         );

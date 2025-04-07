@@ -44,7 +44,7 @@
     (ngModelChange)="onTopicChange($event)">
       @if (categorySelected) { @for (topic of availableTopics; track
       topic.topic_id) {
-      <option [value]="topic.topic_id">{{ topic.topic }}</option>
+      <option [value]="topic.topic_id" [selected]="true">{{ topic.topic }}</option>
       } } @else {
       <option [value]="">Kategorie wählen!</option>
       }
