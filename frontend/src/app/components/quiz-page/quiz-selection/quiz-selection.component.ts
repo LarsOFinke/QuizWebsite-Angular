@@ -124,15 +124,15 @@ export class QuizSelectionComponent implements OnInit {
     }
   }
 
-  startCategory() {
-    this.quizService.fetchQuestions(
+  async startCategory() {
+    await this.quizService.fetchQuestions(
       'category',
       this.selectedCategoryId,
       this.questionAmount
     );
 
     // SET quizStarted in quiz-page to true
-    this.start.emit(true);
+    this.start.emit();
   }
 
   startTopic() {}

@@ -50,7 +50,6 @@ export class QuizService {
         .post(`${api_url}/get-questions`, { mode, modeId, question_amount })
         .toPromise();
       this.questions = response;
-      console.log('Questions with async/await:', this.questions);
     } catch (error) {
       console.error('Error occurred:', error);
     }

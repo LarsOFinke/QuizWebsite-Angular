@@ -1,7 +1,6 @@
-<p>quiz-game works!</p>
 <div class="wrapper centered">
   <form method="POST" class="centered">
-    <h2 id="quest-text">qT</h2>
+    <h2 id="quest-text">{{ question }}</h2>
 
     <hr />
     <div class="centered">
@@ -11,9 +10,9 @@
 
     <hr />
 
-    <button class="btn-medium" id="answ-1">a1</button>
-    <button class="btn-medium" id="answ-2">a2</button>
-    <button class="btn-medium" id="answ-3">a3</button>
-    <button class="btn-medium" id="answ-4">a4</button>
+    <button class="btn-medium" (click)="answerQuestion(1)">{{ answer1 }}</button>
+    <button class="btn-medium" (click)="answerQuestion(1)">{{ answer2 }}</button>
+    <button class="btn-medium" (click)="answerQuestion(1)">{{ answer3 }}</button>
+    <button class="btn-medium" (click)="answerQuestion(1)">{{ answer4 }}</button>
   </form>
 </div>
