@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-results',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './quiz-results.component.html',
-  styleUrl: './quiz-results.component.css'
+  styleUrl: './quiz-results.component.css',
 })
-export class QuizResultsComponent {
-
-}
+export class QuizResultsComponent {}
