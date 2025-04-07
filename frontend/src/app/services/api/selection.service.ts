@@ -26,25 +26,20 @@ export class SelectionService {
         })
       );
   }
+
+  fetchTopics() {
+    return this.httpClient
+      .get<{ topics: [{ topic: string; topic_id: number }] }>(
+        `${api_url}/get-topics`
+      )
+      .pipe(
+        map((resData) => resData),
+        catchError((error) => {
+          console.log(error);
+          return throwError(
+            () => new Error('Topics konnten nicht gefetcht werden!')
+          );
+        })
+      );
+  }
 }
-
-// async function fetch_topics() {
-//   topics = [];
-
-//   return fetch(`${api_url}get-topics`, {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       topics = data.topics;
-//     })
-//     .catch((error) => {
-//       createErrorBox(
-//         'Themen konnten nicht gefetcht werden! Verbindung zum Server steht?'
-//       );
-//       console.error('Error:', error);
-//     });
-// }

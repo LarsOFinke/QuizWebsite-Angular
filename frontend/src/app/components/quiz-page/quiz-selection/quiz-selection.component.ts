@@ -16,7 +16,11 @@ export class QuizSelectionComponent implements OnInit {
   categories = signal<{
     categories: [{ category: string; category_id: number }];
   }>({ categories: [{ category: 'Keine gefunden!', category_id: -1 }] });
-  topics: string[] = [];
+  categorySelected = false;
+  topics = signal<{
+    topics: [{ topic: string; topic_id: number }];
+  }>({ topics: [{ topic: 'Keine gefunden!', topic_id: -1 }] });
+  topicSelected = false;
 
   isFetching = signal(false);
   error = signal('');
@@ -25,10 +29,20 @@ export class QuizSelectionComponent implements OnInit {
 
   ngOnInit() {
     this.isFetching.set(true);
-    const subscription = this.selectionService.fetchCategories().subscribe({
+    const categories = this.selectionService.fetchCategories().subscribe({
       next: (categories) => {
         console.log(categories);
         this.categories.set(categories);
+      },
+      error: (error: Error) => {
+        this.error.set(error.message);
+      },
+    });
+
+    const topics = this.selectionService.fetchTopics().subscribe({
+      next: (topics) => {
+        console.log(topics);
+        this.topics.set(topics);
       },
       error: (error: Error) => {
         this.error.set(error.message);
@@ -39,7 +53,8 @@ export class QuizSelectionComponent implements OnInit {
     });
 
     this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
+      categories.unsubscribe();
+      topics.unsubscribe();
     });
   }
 
@@ -47,9 +62,15 @@ export class QuizSelectionComponent implements OnInit {
     this.questionAmount = newValue;
   }
 
-  startCategory() {}
+  startCategory() {
+    if (this.categorySelected) {
+    }
+  }
 
-  startTopic() {}
+  startTopic() {
+    if (this.topicSelected) {
+    }
+  }
 
   startFull() {}
 }
