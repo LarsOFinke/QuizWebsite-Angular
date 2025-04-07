@@ -24,6 +24,10 @@ export class QuizGameComponent implements OnInit {
     this.questionList = this.quizService.questions.questions;
     console.log(this.questionList);
 
+    this.rotateQuestion();
+  }
+
+  rotateQuestion() {
     this.question.set(
       this.questionList[this.currentQuestionIndex].questionText
     );
@@ -42,22 +46,8 @@ export class QuizGameComponent implements OnInit {
   }
 
   answerQuestion(choice: number) {
-    this.currentQuestionIndex++;
 
-    this.question.set(
-      this.questionList[this.currentQuestionIndex].questionText
-    );
-    this.answer1.set(
-      this.questionList[this.currentQuestionIndex].answers[0]
-    );
-    this.answer2.set(
-      this.questionList[this.currentQuestionIndex].answers[1]
-    );
-    this.answer3.set(
-      this.questionList[this.currentQuestionIndex].answers[2]
-    );
-    this.answer4.set(
-      this.questionList[this.currentQuestionIndex].answers[3]
-    );
+    this.rotateQuestion();
+    this.currentQuestionIndex++;
   }
 }
