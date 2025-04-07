@@ -16,18 +16,17 @@ export class QuizSelectionComponent implements OnInit {
 
   categories = signal<{
     categories: [{ category: string; category_id: number }];
-  }>({ categories: [{ category: 'Keine verfügbar!', category_id: -1 }] });
+  }>({ categories: [{ category: 'Keine verfügbar!', category_id: 0 }] });
   categorySelected = false;
   selectedCategory: string = '';
   selectedCategoryId: number = 0;
   selectedCategoryName = '';
 
   topics = signal<{
-    topics: [{ topic: string; topic_id: number }];
-  }>({ topics: [{ topic: 'Keine gefunden!', topic_id: -1 }] });
-  availableTopics: [{ topic: string; topic_id: number }] = [
-    { topic: 'Keine verfügbar!', topic_id: 0 },
-  ];
+    topics: [{ category_id: number; topic: string; topic_id: number }];
+  }>({ topics: [{ category_id: -1, topic: 'Keine gefunden!', topic_id:  0 }] });
+  availableTopics: [{ category_id: number; topic: string; topic_id: number }] =
+    [{ category_id: -1, topic: 'Keine verfügbar!', topic_id: 0 }];
   topicSelected = false;
   selectedTopic: string = '';
   selectedTopicId = 0;
@@ -50,7 +49,9 @@ export class QuizSelectionComponent implements OnInit {
     });
 
     const topics = this.selectionService.fetchTopics().subscribe({
-      next: (topics: { topics: [{ topic: string; topic_id: number }] }) => {
+      next: (topics: {
+        topics: [{ category_id: number; topic: string; topic_id: number }];
+      }) => {
         this.topics.set(topics);
       },
       error: (error: Error) => {
@@ -83,8 +84,17 @@ export class QuizSelectionComponent implements OnInit {
             if (category.category_id === this.selectedCategoryId) {
               this.selectedCategoryName = category.category;
 
-              console.log(this.topics.call(this.topics).topics);
-              console.log(this.availableTopics);
+              console.log("topics:", this.topics.call(this.topics).topics);
+
+              this.availableTopics = [{ category_id: -1, topic: 'Bitte wählen!', topic_id: 0 }];
+              this.availableTopics.pop();
+              this.topics.call(this.topics).topics.forEach((topic) => {
+                if (topic.category_id === this.selectedCategoryId) {
+                  this.availableTopics.push(topic);
+                }
+              });
+
+              console.log("available topics:", this.availableTopics);
             }
           }
         );

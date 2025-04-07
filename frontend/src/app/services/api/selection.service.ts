@@ -29,7 +29,7 @@ export class SelectionService {
 
   fetchTopics() {
     return this.httpClient
-      .get<{ topics: [{ topic: string; topic_id: number }] }>(
+      .get<{ topics: [{ category_id: number, topic: string; topic_id: number }] }>(
         `${api_url}/get-topics`
       )
       .pipe(

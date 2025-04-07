@@ -25,9 +25,9 @@
       [(ngModel)]="selectedCategory"
       (ngModelChange)="onCategoryChange($event)"
     >
-      <option id="cat_def_opt">Bitte wählen!</option>
+      <!-- <option id="cat_def_opt" selected>Bitte wählen!</option> -->
       @for (category of categories().categories; track category.category_id) {
-      <option [value]="category.category_id">{{ category.category }}</option>
+      <option [value]="category.category_id" [selected]="category.category_id === 0">{{ category.category }}</option>
       }
     </select>
     <button class="btn" (click)="startCategory()">
@@ -39,14 +39,19 @@
 
   <form class="centered">
     <label for="topic">Thema:</label>
-    <select id="topic" name="selectedTopic"
-    [(ngModel)]="selectedTopic"
-    (ngModelChange)="onTopicChange($event)">
+    <select
+      id="topic"
+      name="selectedTopic"
+      [(ngModel)]="selectedTopic"
+      (ngModelChange)="onTopicChange($event)"
+    >
       @if (categorySelected) { @for (topic of availableTopics; track
       topic.topic_id) {
-      <option [value]="topic.topic_id" [selected]="true">{{ topic.topic }}</option>
+      <option [value]="topic.topic_id" [selected]="topic.topic_id === 0">
+        {{ topic.topic }}
+      </option>
       } } @else {
-      <option [value]="">Kategorie wählen!</option>
+      <option [value]="null" selected>Kategorie wählen!</option>
       }
     </select>
     <button class="btn" (click)="startTopic()">Spiel' ein Thema!</button>
