@@ -16,15 +16,20 @@ export class QuizSelectionComponent implements OnInit {
 
   categories = signal<{
     categories: [{ category: string; category_id: number }];
-  }>({ categories: [{ category: 'Keine gefunden!', category_id: -1 }] });
+  }>({ categories: [{ category: 'Keine verfügbar!', category_id: -1 }] });
   categorySelected = false;
-  selectedCategoryId = 0;
+  selectedCategory: string = '';
+  selectedCategoryId: number = 0;
   selectedCategoryName = '';
 
   topics = signal<{
     topics: [{ topic: string; topic_id: number }];
   }>({ topics: [{ topic: 'Keine gefunden!', topic_id: -1 }] });
+  availableTopics: [{ topic: string; topic_id: number }] = [
+    { topic: 'Keine verfügbar!', topic_id: 0 },
+  ];
   topicSelected = false;
+  selectedTopic: string = '';
   selectedTopicId = 0;
   selectedTopicName = '';
 
@@ -66,7 +71,10 @@ export class QuizSelectionComponent implements OnInit {
     this.questionAmount = newValue;
   }
 
-  startCategory() {
+  onCategoryChange(selectedValue: string): void {
+    this.selectedCategoryId = parseInt(selectedValue);
+    this.categorySelected = true;
+
     if (this.categorySelected) {
       this.categories
         .call(this.categories)
@@ -80,19 +88,24 @@ export class QuizSelectionComponent implements OnInit {
     }
   }
 
-  startTopic() {
+  onTopicChange(selectedValue: string): void {
+    this.selectedTopicId = parseInt(selectedValue);
+    this.topicSelected = true;
+
     if (this.topicSelected) {
       this.topics
         .call(this.topics)
-        .topics.forEach(
-          (topic: { topic: string; topic_id: number }) => {
-            if (topic.topic_id === this.selectedCategoryId) {
-              this.selectedCategoryName = topic.topic;
-            }
+        .topics.forEach((topic: { topic: string; topic_id: number }) => {
+          if (topic.topic_id === this.selectedTopicId) {
+            this.selectedTopicName = topic.topic;
           }
-        );
+        });
     }
   }
+
+  startCategory() {}
+
+  startTopic() {}
 
   startFull() {}
 }

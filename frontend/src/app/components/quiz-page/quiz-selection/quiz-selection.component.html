@@ -19,7 +19,12 @@
 
   <form class="centered">
     <label for="category">Kategorie:</label>
-    <select id="category">
+    <select
+      id="category"
+      name="selectedCategory"
+      [(ngModel)]="selectedCategory"
+      (ngModelChange)="onCategoryChange($event)"
+    >
       <option id="cat_def_opt">Bitte wählen!</option>
       @for (category of categories().categories; track category.category_id) {
       <option [value]="category.category_id">{{ category.category }}</option>
@@ -34,8 +39,10 @@
 
   <form class="centered">
     <label for="topic">Thema:</label>
-    <select id="topic">
-      @if (categorySelected) { @for (topic of topics().topics; track
+    <select id="topic" name="selectedTopic"
+    [(ngModel)]="selectedTopic"
+    (ngModelChange)="onTopicChange($event)">
+      @if (categorySelected) { @for (topic of availableTopics; track
       topic.topic_id) {
       <option [value]="topic.topic_id">{{ topic.topic }}</option>
       } } @else {
