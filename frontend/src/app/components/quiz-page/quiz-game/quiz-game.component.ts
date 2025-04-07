@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { QuizService } from '../../../services/quiz.service';
 
 @Component({
@@ -10,21 +10,54 @@ import { QuizService } from '../../../services/quiz.service';
 export class QuizGameComponent implements OnInit {
   private quizService = inject(QuizService);
 
-  questionList: [] = [];
-  question: string = '';
-  answer1: string = '';
-  answer2: string = '';
-  answer3: string = '';
-  answer4: string = '';
+  questionList: any = [];
+  currentQuestionIndex: number = 0;
 
-  constructor() {}
+  question = signal('');
+  answer1 = signal('');
+  answer2 = signal('');
+  answer3 = signal('');
+  answer4 = signal('');
+
 
   ngOnInit(): void {
-    this.questionList = this.quizService.questions;
+    this.questionList = this.quizService.questions.questions;
     console.log(this.questionList);
+
+    this.question.set(
+      this.questionList[this.currentQuestionIndex].questionText
+    );
+    this.answer1.set(
+      this.questionList[this.currentQuestionIndex].answers[0]
+    );
+    this.answer2.set(
+      this.questionList[this.currentQuestionIndex].answers[1]
+    );
+    this.answer3.set(
+      this.questionList[this.currentQuestionIndex].answers[2]
+    );
+    this.answer4.set(
+      this.questionList[this.currentQuestionIndex].answers[3]
+    );
   }
 
   answerQuestion(choice: number) {
-    console.log(choice);
+    this.currentQuestionIndex++;
+
+    this.question.set(
+      this.questionList[this.currentQuestionIndex].questionText
+    );
+    this.answer1.set(
+      this.questionList[this.currentQuestionIndex].answers[0]
+    );
+    this.answer2.set(
+      this.questionList[this.currentQuestionIndex].answers[1]
+    );
+    this.answer3.set(
+      this.questionList[this.currentQuestionIndex].answers[2]
+    );
+    this.answer4.set(
+      this.questionList[this.currentQuestionIndex].answers[3]
+    );
   }
 }

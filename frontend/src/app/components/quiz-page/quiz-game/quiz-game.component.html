@@ -1,6 +1,6 @@
 <div class="wrapper centered">
   <form method="POST" class="centered">
-    <h2 id="quest-text">{{ question }}</h2>
+    <h2 id="quest-text">{{ question() }}</h2>
 
     <hr />
     <div class="centered">
@@ -10,9 +10,9 @@
 
     <hr />
 
-    <button class="btn-medium" (click)="answerQuestion(1)">{{ answer1 }}</button>
-    <button class="btn-medium" (click)="answerQuestion(1)">{{ answer2 }}</button>
-    <button class="btn-medium" (click)="answerQuestion(1)">{{ answer3 }}</button>
-    <button class="btn-medium" (click)="answerQuestion(1)">{{ answer4 }}</button>
+    <button type="button" class="btn-medium" (click)="answerQuestion(1)">{{ answer1() }}</button>
+    <button type="button" class="btn-medium" (click)="answerQuestion(1)">{{ answer2() }}</button>
+    <button type="button" class="btn-medium" (click)="answerQuestion(1)">{{ answer3() }}</button>
+    <button type="button" class="btn-medium" (click)="answerQuestion(1)">{{ answer4() }}</button>
   </form>
 </div>
