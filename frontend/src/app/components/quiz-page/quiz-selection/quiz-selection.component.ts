@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
+import { Category } from '../../../interfaces/category';
+import { Topic } from '../../../interfaces/topic';
 
 @Component({
   selector: 'app-quiz-selection',
@@ -25,7 +27,7 @@ export class QuizSelectionComponent implements OnInit {
   questionAmount: number = 10;
 
   categories = signal<{
-    categories: [{ category: string; category_id: number }];
+    categories: Category[];
   }>({ categories: [{ category: 'Keine verfügbar!', category_id: 0 }] });
   categorySelected = false;
   selectedCategory: string = '';
@@ -33,10 +35,11 @@ export class QuizSelectionComponent implements OnInit {
   selectedCategoryName = '';
 
   topics = signal<{
-    topics: [{ category_id: number; topic: string; topic_id: number }];
+    topics: Topic[];
   }>({ topics: [{ category_id: -1, topic: 'Keine gefunden!', topic_id: 0 }] });
-  availableTopics: [{ category_id: number; topic: string; topic_id: number }] =
-    [{ category_id: -1, topic: 'Keine verfügbar!', topic_id: 0 }];
+  availableTopics: Topic[] = [
+    { category_id: -1, topic: 'Keine verfügbar!', topic_id: 0 },
+  ];
   topicSelected = false;
   selectedTopic: string = '';
   selectedTopicId = 0;
@@ -59,9 +62,7 @@ export class QuizSelectionComponent implements OnInit {
     });
 
     const topics = this.quizService.fetchTopics().subscribe({
-      next: (topics: {
-        topics: [{ category_id: number; topic: string; topic_id: number }];
-      }) => {
+      next: (topics: { topics: Topic[] }) => {
         this.topics.set(topics);
       },
       error: (error: Error) => {
@@ -89,23 +90,21 @@ export class QuizSelectionComponent implements OnInit {
     if (this.categorySelected) {
       this.categories
         .call(this.categories)
-        .categories.forEach(
-          (category: { category: string; category_id: number }) => {
-            if (category.category_id === this.selectedCategoryId) {
-              this.selectedCategoryName = category.category;
+        .categories.forEach((category: Category) => {
+          if (category.category_id === this.selectedCategoryId) {
+            this.selectedCategoryName = category.category;
 
-              this.availableTopics = [
-                { category_id: -1, topic: 'Bitte wählen!', topic_id: 0 },
-              ];
-              this.availableTopics.pop();
-              this.topics.call(this.topics).topics.forEach((topic) => {
-                if (topic.category_id === this.selectedCategoryId) {
-                  this.availableTopics.push(topic);
-                }
-              });
-            }
+            this.availableTopics = [
+              { category_id: -1, topic: 'Bitte wählen!', topic_id: 0 },
+            ];
+            this.availableTopics.pop();
+            this.topics.call(this.topics).topics.forEach((topic) => {
+              if (topic.category_id === this.selectedCategoryId) {
+                this.availableTopics.push(topic);
+              }
+            });
           }
-        );
+        });
     }
   }
 
@@ -114,13 +113,11 @@ export class QuizSelectionComponent implements OnInit {
     this.topicSelected = true;
 
     if (this.topicSelected) {
-      this.topics
-        .call(this.topics)
-        .topics.forEach((topic: { topic: string; topic_id: number }) => {
-          if (topic.topic_id === this.selectedTopicId) {
-            this.selectedTopicName = topic.topic;
-          }
-        });
+      this.topics.call(this.topics).topics.forEach((topic: Topic) => {
+        if (topic.topic_id === this.selectedTopicId) {
+          this.selectedTopicName = topic.topic;
+        }
+      });
     }
   }
 
@@ -139,34 +136,3 @@ export class QuizSelectionComponent implements OnInit {
 
   startFull() {}
 }
-
-// function startCategory(event) {
-//   category_id = parseInt(category_id);
-
-//   fetchQuestions('category', category_id).then((question_list) => {
-//     localStorage.setItem('question_list', JSON.stringify(question_list));
-//     window.location.href = '/quiz';
-//   });
-// }
-
-// function startTopic(event) {
-//   event.preventDefault();
-
-//   let topic_id = document.getElementById('topic').value;
-//   localStorage.setItem('topic_id', topic_id);
-//   topic_id = parseInt(topic_id);
-
-//   fetchQuestions('topic', topic_id).then((question_list) => {
-//     localStorage.setItem('question_list', JSON.stringify(question_list));
-//     window.location.href = '/quiz';
-//   });
-// }
-
-// function startFull(event) {
-//   event.preventDefault();
-
-//   fetchQuestions('full').then((question_list) => {
-//     localStorage.setItem('question_list', JSON.stringify(question_list));
-//     window.location.href = '/quiz';
-//   });
-// }
