@@ -1,4 +1,12 @@
-import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 
@@ -9,6 +17,8 @@ import { QuizService } from '../../../services/quiz.service';
   styleUrl: './quiz-selection.component.css',
 })
 export class QuizSelectionComponent implements OnInit {
+  @Output() start = new EventEmitter();
+
   private quizService = inject(QuizService);
   private destroyRef = inject(DestroyRef);
 
@@ -84,8 +94,6 @@ export class QuizSelectionComponent implements OnInit {
             if (category.category_id === this.selectedCategoryId) {
               this.selectedCategoryName = category.category;
 
-              console.log('topics:', this.topics.call(this.topics).topics);
-
               this.availableTopics = [
                 { category_id: -1, topic: 'Bitte wählen!', topic_id: 0 },
               ];
@@ -95,8 +103,6 @@ export class QuizSelectionComponent implements OnInit {
                   this.availableTopics.push(topic);
                 }
               });
-
-              console.log('available topics:', this.availableTopics);
             }
           }
         );
@@ -124,6 +130,9 @@ export class QuizSelectionComponent implements OnInit {
       this.selectedCategoryId,
       this.questionAmount
     );
+
+    // SET quizStarted in quiz-page to true
+    this.start.emit(true);
   }
 
   startTopic() {}

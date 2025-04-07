@@ -44,15 +44,15 @@ export class QuizService {
       );
   }
 
-  fetchQuestions(mode: string, modeId: number = 0, question_amount: number) {
-    this.httpClient.post(`${api_url}/get-questions`, { mode, modeId, question_amount }).subscribe(
-      (response) => {
-        this.questions = response; // This will log the response from the backend
-        console.log(this.questions);
-      },
-      (error) => {
-        console.error('Error occurred:', error); // This will log any errors
-      }
-    );;
+  async fetchQuestions(mode: string, modeId: number = 0, question_amount: number) {
+    try {
+      const response = await this.httpClient
+        .post(`${api_url}/get-questions`, { mode, modeId, question_amount })
+        .toPromise();
+      this.questions = response;
+      console.log('Questions with async/await:', this.questions);
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
   }
 }

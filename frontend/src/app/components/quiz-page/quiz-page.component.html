@@ -1,5 +1,5 @@
 @if (!quizStarted && !quizFinished) {
-<app-quiz-selection></app-quiz-selection>
+<app-quiz-selection (start)="startQuiz()"></app-quiz-selection>
 } @if (quizStarted && !quizFinished) {
 <app-quiz-game></app-quiz-game>
 } @if (quizStarted && quizFinished) {
