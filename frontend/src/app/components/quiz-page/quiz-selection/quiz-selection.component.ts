@@ -13,14 +13,20 @@ export class QuizSelectionComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   questionAmount: number = 10;
+
   categories = signal<{
     categories: [{ category: string; category_id: number }];
   }>({ categories: [{ category: 'Keine gefunden!', category_id: -1 }] });
   categorySelected = false;
+  selectedCategoryId = 0;
+  selectedCategoryName = '';
+
   topics = signal<{
     topics: [{ topic: string; topic_id: number }];
   }>({ topics: [{ topic: 'Keine gefunden!', topic_id: -1 }] });
   topicSelected = false;
+  selectedTopicId = 0;
+  selectedTopicName = '';
 
   isFetching = signal(false);
   error = signal('');
@@ -31,7 +37,6 @@ export class QuizSelectionComponent implements OnInit {
     this.isFetching.set(true);
     const categories = this.selectionService.fetchCategories().subscribe({
       next: (categories) => {
-        console.log(categories);
         this.categories.set(categories);
       },
       error: (error: Error) => {
@@ -41,7 +46,6 @@ export class QuizSelectionComponent implements OnInit {
 
     const topics = this.selectionService.fetchTopics().subscribe({
       next: (topics) => {
-        console.log(topics);
         this.topics.set(topics);
       },
       error: (error: Error) => {
@@ -64,25 +68,31 @@ export class QuizSelectionComponent implements OnInit {
 
   startCategory() {
     if (this.categorySelected) {
+      this.categories
+        .call(this.categories)
+        .categories.forEach(
+          (category: { category: string; category_id: number }) => {
+            if (category.category_id === this.selectedCategoryId) {
+              this.selectedCategoryName = category.category;
+            }
+          }
+        );
     }
   }
 
   startTopic() {
     if (this.topicSelected) {
+      this.topics
+        .call(this.topics)
+        .topics.forEach(
+          (topic: { topic: string; topic_id: number }) => {
+            if (topic.topic_id === this.selectedCategoryId) {
+              this.selectedCategoryName = topic.topic;
+            }
+          }
+        );
     }
   }
 
   startFull() {}
 }
-
-//   topics.forEach((entry) => {
-//     if (entry.category_id === parseInt(category_id)) {
-//       let new_option = document.createElement('option');
-//       new_option.textContent = entry.topic;
-//       new_option.value = entry.topic_id;
-//       document
-//         .getElementById('topic')
-//         .insertAdjacentElement('beforeend', new_option);
-//     }
-//   });
-// }
