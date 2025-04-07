@@ -44,7 +44,11 @@ export class QuizService {
       );
   }
 
-  async fetchQuestions(mode: string, modeId: number = 0, question_amount: number) {
+  async fetchQuestions(
+    mode: string,
+    modeId: number = 0,
+    question_amount: number
+  ) {
     try {
       const response = await this.httpClient
         .post(`${api_url}/get-questions`, { mode, modeId, question_amount })
@@ -53,5 +57,9 @@ export class QuizService {
     } catch (error) {
       console.error('Error occurred:', error);
     }
+  }
+
+  setPlayerAnswer(qIndex: number, choice: number) {
+    this.questions.questions[qIndex].answerUser = choice;
   }
 }

@@ -46,6 +46,7 @@ export class QuizGameComponent implements OnInit {
   }
 
   answerQuestion(choice: number) {
+    this.quizService.setPlayerAnswer(this.currentQuestionIndex, choice);
 
     this.rotateQuestion();
     this.currentQuestionIndex++;
