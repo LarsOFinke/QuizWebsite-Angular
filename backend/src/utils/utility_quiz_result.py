@@ -34,7 +34,7 @@ def add_result_to_highscores(payload, result):
             category_played: str = "full"
             topic_played: str = "full"
             
-        case "categ":
+        case "category":
             category_played: str = get_category_name(int(payload["category_id"]))
             topic_played: str = "all"
             

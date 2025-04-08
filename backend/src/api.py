@@ -38,7 +38,6 @@ def get_questions():
                                     # "mode": "mode",   -> str: str
                                     # "id": id  - > str: int
                                     # }
-    print(data)
 
     question_amount: int = int(data.get("question_amount")) 
     

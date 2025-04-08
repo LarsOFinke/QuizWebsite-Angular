@@ -10,7 +10,7 @@ import { IQuestion } from '../interfaces/i-question';
 export class QuizService {
   private httpClient = inject(HttpClient);
 
-  questions: {questions: IQuestion[]} | any = [];
+  questions: { questions: IQuestion[] } | any = [];
   highscores: any = [];
 
   gameMode: string = '';
@@ -59,7 +59,7 @@ export class QuizService {
     question_amount: number
   ) {
     try {
-      const response: {questions: IQuestion[]} | any = await this.httpClient
+      const response: { questions: IQuestion[] } | any = await this.httpClient
         .post(`${api_url}/get-questions`, { mode, modeId, question_amount })
         .toPromise();
       this.questions = response;
@@ -83,7 +83,7 @@ export class QuizService {
     try {
       const response = await this.httpClient
         .post(`${api_url}/process-quiz-result`, {
-          question_list: this.questions,
+          question_list: this.questions.questions,
           game_mode: this.gameMode,
           username: this.username,
           category_id: this.categoryId,
@@ -108,25 +108,3 @@ export class QuizService {
     }
   }
 }
-
-// async function fetch_highscores(mode, category, topic) {
-//   let highscores = [];
-
-//   return fetch(`${api_url}get-highscores`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({ mode, category, topic }),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       highscores = data.highscores;
-//       return highscores;
-//     })
-//     .catch((error) => {
-//       createErrorBox('Highscores konnten nicht gefetcht werden!');
-//       console.error('Error:', error);
-//       return highscores;
-//     });
-// }

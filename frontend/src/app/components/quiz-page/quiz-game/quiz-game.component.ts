@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
 import { QuizService } from '../../../services/quiz.service';
 import { IQuestion } from '../../../interfaces/i-question';
 
@@ -10,6 +10,8 @@ import { IQuestion } from '../../../interfaces/i-question';
 })
 export class QuizGameComponent implements OnInit {
   private quizService = inject(QuizService);
+
+  @Output() end = new EventEmitter();
 
   questionList: IQuestion[] = [];
   currentQuestionIndex: number = 0;
@@ -28,6 +30,7 @@ export class QuizGameComponent implements OnInit {
 
   async endQuiz() {
     await this.quizService.processQuizEnd();
+    this.end.emit();
   }
 
   rotateQuestion() {
