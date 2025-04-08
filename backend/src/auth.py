@@ -11,10 +11,12 @@ def clear_session():
     return redirect(url_for('views.home'))
 
 
-@auth.route("/login-guest", methods=["POST"])
+@auth.route("/login-guest", methods=["GET", "POST"])
 def login_guest():
     session["username"] = "guest"
     session["is_admin"] = False
+    
+    print("ok")
         
     return jsonify({"success": True}), 200
 

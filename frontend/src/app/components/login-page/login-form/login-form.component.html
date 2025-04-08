@@ -39,6 +39,8 @@
 
   <button type="submit" id="login-button" class="btn">Login</button>
 
+  <hr>
+
   <div class="register-link">
     <p>
       <a [routerLink]="['/register']" routerLinkActive="router-link-active"
@@ -46,4 +48,8 @@
       >
     </p>
   </div>
+
+  <hr>
+
+  <button type="button" class="btn" (click)="loginGuest()">Als Gast spielen</button>
 </form>

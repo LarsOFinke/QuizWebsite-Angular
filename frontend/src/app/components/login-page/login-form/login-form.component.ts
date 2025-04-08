@@ -40,4 +40,8 @@ export class LoginFormComponent {
       },
     });
   }
+
+  loginGuest() {
+    this.loginService.loginGuest().then(response => this.router.navigate(['/main-menu']))
+  }
 }

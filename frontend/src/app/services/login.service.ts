@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { api_url } from '../../main';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
   private httpClient = inject(HttpClient);
@@ -13,5 +13,9 @@ export class LoginService {
     const payload = { username, password }; // Create the payload object
 
     return this.httpClient.post(`${api_url}/auth/login`, payload); // Send a POST request with the payload
+  }
+
+  async loginGuest() {
+    return this.httpClient.post(`${api_url}/login-guest`, {});
   }
 }
