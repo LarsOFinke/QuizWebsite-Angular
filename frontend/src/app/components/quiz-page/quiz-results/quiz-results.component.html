@@ -6,13 +6,11 @@
     <u>{{ result }}%</u>
   </h2>
 
-  <!-- <br />
+  <br />
 
-  <a [routerLink]="['/quiz']" routerLinkActive="router-link-active">
-    <button class="btn">Nochmal!</button>
-  </a>
+  <button class="btn" (click)="again()">Nochmal!</button>
 
-  <br /> -->
+  <br />
 
   <h2>Zusammenfassung:</h2>
 
@@ -25,11 +23,12 @@
       </tr>
 
       @for (question of questionList; track $index) {
-        <tr>
-          <td>{{$index}}</td>
-          <td>{{question.correctAnswered}}</td>
-          <td><a>Link</a></td>
-        </tr>
+      <tr>
+        <td>{{ $index + 1 }}</td>
+        <td *ngIf="question.correctAnswered">Richtig</td>
+        <td *ngIf="!question.correctAnswered">Falsch</td>
+        <td><a>Link</a></td>
+      </tr>
       }
     </table>
   </div>

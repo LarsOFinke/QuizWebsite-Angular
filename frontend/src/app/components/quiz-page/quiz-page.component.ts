@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { QuizSelectionComponent } from './quiz-selection/quiz-selection.component';
 import { QuizGameComponent } from './quiz-game/quiz-game.component';
 import { QuizResultsComponent } from './quiz-results/quiz-results.component';
-import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-quiz-page',
@@ -11,16 +10,21 @@ import { QuizService } from '../../services/quiz.service';
   styleUrl: './quiz-page.component.css',
 })
 export class QuizPageComponent {
-  private quizService = inject(QuizService);
-
   quizStarted: boolean = false;
   quizFinished: boolean = false;
 
   startQuiz() {
     this.quizStarted = true;
+    this.quizFinished = false;
   }
 
   finishQuiz() {
+    this.quizStarted = false;
     this.quizFinished = true;
+  }
+
+  restart() {
+    this.quizStarted = false;
+    this.quizFinished = false;
   }
 }

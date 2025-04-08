@@ -2,6 +2,6 @@
 <app-quiz-selection (start)="startQuiz()"></app-quiz-selection>
 } @if (quizStarted && !quizFinished) {
 <app-quiz-game (end)="finishQuiz()"></app-quiz-game>
-} @if (quizStarted && quizFinished) {
-<app-quiz-results></app-quiz-results>
+} @if (!quizStarted && quizFinished) {
+<app-quiz-results (restart)="restart()"></app-quiz-results>
 }
