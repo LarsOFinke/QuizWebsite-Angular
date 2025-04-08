@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
-import { Category } from '../../../interfaces/category';
-import { Topic } from '../../../interfaces/topic';
+import { ICategory } from '../../../interfaces/i-category';
+import { ITopic } from '../../../interfaces/i-topic';
 
 @Component({
   selector: 'app-quiz-selection',
@@ -27,7 +27,7 @@ export class QuizSelectionComponent implements OnInit {
   questionAmount: number = 10;
 
   categories = signal<{
-    categories: Category[];
+    categories: ICategory[];
   }>({ categories: [{ category: 'Keine verfügbar!', category_id: 0 }] });
   categorySelected = false;
   selectedCategory: string = '';
@@ -35,9 +35,9 @@ export class QuizSelectionComponent implements OnInit {
   selectedCategoryName = '';
 
   topics = signal<{
-    topics: Topic[];
+    topics: ITopic[];
   }>({ topics: [{ category_id: -1, topic: 'Keine gefunden!', topic_id: 0 }] });
-  availableTopics: Topic[] = [
+  availableTopics: ITopic[] = [
     { category_id: -1, topic: 'Keine verfügbar!', topic_id: 0 },
   ];
   topicSelected = false;
@@ -62,7 +62,7 @@ export class QuizSelectionComponent implements OnInit {
     });
 
     const topics = this.quizService.fetchTopics().subscribe({
-      next: (topics: { topics: Topic[] }) => {
+      next: (topics: { topics: ITopic[] }) => {
         this.topics.set(topics);
       },
       error: (error: Error) => {
@@ -90,7 +90,7 @@ export class QuizSelectionComponent implements OnInit {
     if (this.categorySelected) {
       this.categories
         .call(this.categories)
-        .categories.forEach((category: Category) => {
+        .categories.forEach((category: ICategory) => {
           if (category.category_id === this.selectedCategoryId) {
             this.selectedCategoryName = category.category;
 
@@ -113,7 +113,7 @@ export class QuizSelectionComponent implements OnInit {
     this.topicSelected = true;
 
     if (this.topicSelected) {
-      this.topics.call(this.topics).topics.forEach((topic: Topic) => {
+      this.topics.call(this.topics).topics.forEach((topic: ITopic) => {
         if (topic.topic_id === this.selectedTopicId) {
           this.selectedTopicName = topic.topic;
         }

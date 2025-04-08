@@ -18,12 +18,41 @@
 
     <form>
       <label for="category">Kategorie:</label>
-      <select id="category" onchange="updateTopics(event)"></select>
+      <select
+      id="category"
+      name="selectedCategory"
+      [(ngModel)]="selectedCategory"
+      (ngModelChange)="onCategoryChange($event)"
+    >
+      <!-- <option id="cat_def_opt" selected>Bitte wählen!</option> -->
+      @for (category of categories().categories; track category.category_id) {
+      <option
+        [value]="category.category_id"
+        [selected]="category.category_id === 0"
+      >
+        {{ category.category }}
+      </option>
+      }
+    </select>
     </form>
 
     <form>
       <label for="topic">Themen:</label>
-      <select id="topic" onchange="getTopicHighscores(event)"></select>
+      <select
+      id="topic"
+      name="selectedTopic"
+      [(ngModel)]="selectedTopic"
+      (ngModelChange)="onTopicChange($event)"
+    >
+      @if (categorySelected) { @for (topic of availableTopics; track
+      topic.topic_id) {
+      <option [value]="topic.topic_id" [selected]="topic.topic_id === 0">
+        {{ topic.topic }}
+      </option>
+      } } @else {
+      <option [value]="null" selected>Kategorie wählen!</option>
+      }
+    </select>
     </form>
   </div>
 
