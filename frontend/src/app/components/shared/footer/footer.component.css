@@ -1,6 +1,6 @@
 /* ### FOOTER ### */
 footer {
-  position: static;
+  position: sticky;
   bottom: 0;
   left: 0;
   font-size: 0.9rem;
