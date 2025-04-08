@@ -73,6 +73,10 @@ export class HighscoresPageComponent {
   }
 
   async onModeChange() {
+    this.highscores = [];
+    this.categorySelected = false;
+    this.topicSelected = false;
+
     if (this.mode === 'full') {
       await this.quizService.fetchHighscores(
         this.mode,
@@ -80,8 +84,6 @@ export class HighscoresPageComponent {
         this.selectedTopicId
       );
       this.highscores = this.quizService.highscores.highscores;
-    } else {
-      this.highscores = [];
     }
   }
 
@@ -119,7 +121,7 @@ export class HighscoresPageComponent {
     }
   }
 
-  onTopicChange(selectedValue: string): void {
+  async onTopicChange(selectedValue: string) {
     this.selectedTopicId = parseInt(selectedValue);
     this.topicSelected = true;
 
@@ -129,6 +131,13 @@ export class HighscoresPageComponent {
           this.selectedTopicName = topic.topic;
         }
       });
+
+      await this.quizService.fetchHighscores(
+        this.mode,
+        this.selectedCategoryId,
+        this.selectedTopicId
+      );
+      this.highscores = this.quizService.highscores.highscores;
     }
   }
 }
