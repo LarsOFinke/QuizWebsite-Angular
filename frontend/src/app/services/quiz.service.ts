@@ -91,7 +91,6 @@ export class QuizService {
         })
         .toPromise();
       this.result = response;
-      console.log(this.result);
     } catch (error) {
       console.error('Error occurred:', error);
     }

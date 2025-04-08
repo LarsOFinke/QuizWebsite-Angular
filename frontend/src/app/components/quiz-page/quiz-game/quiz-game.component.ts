@@ -23,7 +23,6 @@ export class QuizGameComponent implements OnInit {
 
   ngOnInit(): void {
     this.questionList = this.quizService.questions.questions;
-    console.log(this.questionList);
 
     this.rotateQuestion();
   }

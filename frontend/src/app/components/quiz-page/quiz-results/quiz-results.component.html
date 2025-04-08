@@ -1,24 +1,36 @@
 <!-- ERGEBNIS -->
 <div class="wrapper centered">
-  <h2>Dein Ergebnis: <u id="result"></u>!</h2>
+  <h2>
+    Dein Ergebnis:
+    <br />
+    <u>{{ result }}%</u>
+  </h2>
 
-  <br />
+  <!-- <br />
 
   <a [routerLink]="['/quiz']" routerLinkActive="router-link-active">
-    <button class="btn-medium">Nochmal!</button>
+    <button class="btn">Nochmal!</button>
   </a>
 
-  <br />
+  <br /> -->
 
-  <h2><u>Quiz-Ergebnis</u></h2>
+  <h2>Zusammenfassung:</h2>
 
-  <div class="scroll-container centered bordered">
-    <table class="centered">
+  <div class="scroll-container bordered">
+    <table>
       <tr>
-        <th>Frage Nr.</th>
-        <th>Richtig / Falsch</th>
-        <th>Quiz-Fragen</th>
+        <th>Nummer</th>
+        <th>Ergebnis</th>
+        <th>Details</th>
       </tr>
+
+      @for (question of questionList; track $index) {
+        <tr>
+          <td>{{$index}}</td>
+          <td>{{question.correctAnswered}}</td>
+          <td><a>Link</a></td>
+        </tr>
+      }
     </table>
   </div>
 </div>
