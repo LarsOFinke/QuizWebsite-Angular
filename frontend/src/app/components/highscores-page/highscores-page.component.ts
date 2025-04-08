@@ -14,6 +14,8 @@ export class HighscoresPageComponent {
   private quizService = inject(QuizService);
   private destroyRef = inject(DestroyRef);
 
+  mode: string = '';
+
   categories = signal<{
     categories: ICategory[];
   }>({ categories: [{ category: 'Keine verfügbar!', category_id: 0 }] });
@@ -105,3 +107,28 @@ export class HighscoresPageComponent {
     }
   }
 }
+
+// function updateMode(event) {
+//   new_mode = event.target.value;
+
+//   const old_options = document.querySelectorAll('#mode > option');
+//   old_options.forEach((e) => e.remove());
+
+//   if (new_mode === 'full') {
+//     document.getElementById('mode').innerHTML = html_mode_full;
+//     removeCategoryOptions();
+//     removeTopicOptions();
+//     updateHighscores();
+//   } else if (new_mode === 'categ') {
+//     document.getElementById('mode').innerHTML = html_mode_categ;
+//     addEmptyCategoryOption();
+//     get_categories();
+//     clearHighscores();
+//   } else if (new_mode === 'topic') {
+//     document.getElementById('mode').innerHTML = html_mode_topic;
+//     removeCategoryOptions();
+//     addEmptyCategoryOption();
+//     get_categories();
+//     clearHighscores();
+//   }
+// }

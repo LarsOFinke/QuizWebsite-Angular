@@ -93,3 +93,25 @@ export class QuizService {
     }
   }
 }
+
+// async function fetch_highscores(mode, category, topic) {
+//   let highscores = [];
+
+//   return fetch(`${api_url}get-highscores`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ mode, category, topic }),
+//   })
+//     .then((response) => response.json())
+//     .then((data) => {
+//       highscores = data.highscores;
+//       return highscores;
+//     })
+//     .catch((error) => {
+//       createErrorBox('Highscores konnten nicht gefetcht werden!');
+//       console.error('Error:', error);
+//       return highscores;
+//     });
+// }

@@ -7,9 +7,8 @@
 
   <div class="select-wrapper">
     <form>
-      <label for="mode">Ranking:</label>
-      <select id="mode" onchange="updateMode(event)">
-        <option>-- Spielmodus --</option>
+      <label for="mode">Quizmodus:</label>
+      <select id="mode" name="mode" [(ngModel)]="mode">
         <option value="full">Alle Bereiche</option>
         <option value="categ">Kategorie</option>
         <option value="topic">Thema</option>
@@ -19,40 +18,38 @@
     <form>
       <label for="category">Kategorie:</label>
       <select
-      id="category"
-      name="selectedCategory"
-      [(ngModel)]="selectedCategory"
-      (ngModelChange)="onCategoryChange($event)"
-    >
-      <!-- <option id="cat_def_opt" selected>Bitte wählen!</option> -->
-      @for (category of categories().categories; track category.category_id) {
-      <option
-        [value]="category.category_id"
-        [selected]="category.category_id === 0"
+        id="category"
+        name="selectedCategory"
+        [(ngModel)]="selectedCategory"
+        (ngModelChange)="onCategoryChange($event)"
       >
-        {{ category.category }}
-      </option>
-      }
-    </select>
+        @if (mode === "categ" || mode === "topic") { @for (category of
+        categories().categories; track category.category_id) {
+        <option
+          [value]="category.category_id"
+          [selected]="category.category_id === 0"
+        >
+          {{ category.category }}
+        </option>
+        } }
+      </select>
     </form>
 
     <form>
       <label for="topic">Themen:</label>
       <select
-      id="topic"
-      name="selectedTopic"
-      [(ngModel)]="selectedTopic"
-      (ngModelChange)="onTopicChange($event)"
-    >
-      @if (categorySelected) { @for (topic of availableTopics; track
-      topic.topic_id) {
-      <option [value]="topic.topic_id" [selected]="topic.topic_id === 0">
-        {{ topic.topic }}
-      </option>
-      } } @else {
-      <option [value]="null" selected>Kategorie wählen!</option>
-      }
-    </select>
+        id="topic"
+        name="selectedTopic"
+        [(ngModel)]="selectedTopic"
+        (ngModelChange)="onTopicChange($event)"
+      >
+        @if (mode === "topic" && categorySelected) { @for (topic of
+        availableTopics; track topic.topic_id) {
+        <option [value]="topic.topic_id" [selected]="topic.topic_id === 0">
+          {{ topic.topic }}
+        </option>
+        } }
+      </select>
     </form>
   </div>
 
