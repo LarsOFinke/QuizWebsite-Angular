@@ -1,17 +1,26 @@
 form select {
-    width: 100%;
+  width: 100%;
 }
 
 .header {
-    justify-content: center;
-    background: url("../../../assets/images/laurel-wreath.png") no-repeat;
-    background-size: contain;
-    background-position: center;
-    height: 20%;
-    
+  justify-content: center;
+  background: url("../../../assets/images/laurel-wreath.png") no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 20%;
 }
 
 .header h1 {
-    bottom: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-container {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 350px;
+  width: 100%;
+  margin: 3%;
+  padding: 1.5%;
+  text-align: center;
 }

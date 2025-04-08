@@ -91,6 +91,16 @@ form select {
   margin: 4% 0;
 }
 
+table {
+  width: 100%;
+}
+table a {
+  font-size: 1.1rem;
+}
+th {
+  text-align: center;
+}
+
 /* ### GENERAL ### */
 
 /* LINK STYLE */
