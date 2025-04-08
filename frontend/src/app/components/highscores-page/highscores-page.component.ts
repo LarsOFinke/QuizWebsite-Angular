@@ -35,6 +35,8 @@ export class HighscoresPageComponent {
   selectedTopicId = 0;
   selectedTopicName = '';
 
+  highscores = [];
+
   isFetching = signal(false);
   error = signal('');
 
@@ -69,11 +71,11 @@ export class HighscoresPageComponent {
     });
   }
 
-  onCategoryChange(selectedValue: string): void {
+  async onCategoryChange(selectedValue: string) {
     this.selectedCategoryId = parseInt(selectedValue);
     this.categorySelected = true;
 
-    if (this.categorySelected) {
+   if (this.categorySelected) {
       this.categories
         .call(this.categories)
         .categories.forEach((category: ICategory) => {
@@ -92,6 +94,12 @@ export class HighscoresPageComponent {
           }
         });
     }
+
+    if (this.mode === "categ") {
+      await this.quizService.fetchHighscores(this.mode, this.selectedCategoryId, this.selectedTopicId);
+      this.highscores = this.quizService.highscores.highscores;
+      console.log(this.highscores);
+    }
   }
 
   onTopicChange(selectedValue: string): void {
@@ -107,28 +115,3 @@ export class HighscoresPageComponent {
     }
   }
 }
-
-// function updateMode(event) {
-//   new_mode = event.target.value;
-
-//   const old_options = document.querySelectorAll('#mode > option');
-//   old_options.forEach((e) => e.remove());
-
-//   if (new_mode === 'full') {
-//     document.getElementById('mode').innerHTML = html_mode_full;
-//     removeCategoryOptions();
-//     removeTopicOptions();
-//     updateHighscores();
-//   } else if (new_mode === 'categ') {
-//     document.getElementById('mode').innerHTML = html_mode_categ;
-//     addEmptyCategoryOption();
-//     get_categories();
-//     clearHighscores();
-//   } else if (new_mode === 'topic') {
-//     document.getElementById('mode').innerHTML = html_mode_topic;
-//     removeCategoryOptions();
-//     addEmptyCategoryOption();
-//     get_categories();
-//     clearHighscores();
-//   }
-// }

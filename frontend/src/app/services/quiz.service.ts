@@ -8,7 +8,10 @@ import { catchError, map, throwError } from 'rxjs';
 })
 export class QuizService {
   private httpClient = inject(HttpClient);
+
   questions: any = [];
+  highscores: any = [];
+
   gameMode: string = '';
   username: string = '';
   categoryId: number = 0;
@@ -88,6 +91,17 @@ export class QuizService {
         .toPromise();
       this.result = response;
       console.log(this.result);
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
+  }
+
+  async fetchHighscores(mode: string, category_id: number, topic_id: number) {
+    try {
+      const response = await this.httpClient
+        .post(`${api_url}/get-highscores`, { mode, category_id, topic_id })
+        .toPromise();
+      this.highscores = response;
     } catch (error) {
       console.error('Error occurred:', error);
     }

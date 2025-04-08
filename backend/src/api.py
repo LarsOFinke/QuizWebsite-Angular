@@ -114,14 +114,14 @@ def get_highscores():
             highscores = get_highscores_full()  
 
         case "categ":
-            category: str = data.get("category");
+            category: str = data.get("category_id");
             category = get_category_name(category)
             highscores = get_highscores_category(category)
         
         case "topic":
-            category: str = data.get("category");
+            category: str = data.get("category_id");
             category = get_category_name(int(category))
-            topic: str = data.get("topic")
+            topic: str = data.get("topic_id")
             topic = get_topic_name(int(topic))
             highscores = get_highscores_topic(category, topic)
 
