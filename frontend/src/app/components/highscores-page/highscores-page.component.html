@@ -61,6 +61,13 @@
         <th>Punktzahl</th>
         <th>Datum</th>
       </tr>
+      @for (entry of highscores; track $index) {
+        <tr>
+          <td>{{ entry.name }}</td>
+          <td>{{ entry.score }}</td>
+          <td>{{ entry.date }}</td>
+        </tr>
+      }
     </table>
   </div>
 </div>

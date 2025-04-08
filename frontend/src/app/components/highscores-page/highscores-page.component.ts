@@ -3,6 +3,7 @@ import { QuizService } from '../../services/quiz.service';
 import { ICategory } from '../../interfaces/i-category';
 import { ITopic } from '../../interfaces/i-topic';
 import { FormsModule } from '@angular/forms';
+import { IHighscore } from '../../interfaces/i-highscore';
 
 @Component({
   selector: 'app-highscores-page',
@@ -35,7 +36,7 @@ export class HighscoresPageComponent {
   selectedTopicId = 0;
   selectedTopicName = '';
 
-  highscores = [];
+  highscores: IHighscore[] = [];
 
   isFetching = signal(false);
   error = signal('');
