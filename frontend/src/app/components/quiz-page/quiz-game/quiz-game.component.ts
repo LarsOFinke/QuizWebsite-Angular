@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { QuizService } from '../../../services/quiz.service';
+import { IQuestion } from '../../../interfaces/i-question';
 
 @Component({
   selector: 'app-quiz-game',
@@ -10,7 +11,7 @@ import { QuizService } from '../../../services/quiz.service';
 export class QuizGameComponent implements OnInit {
   private quizService = inject(QuizService);
 
-  questionList: any = [];
+  questionList: IQuestion[] = [];
   currentQuestionIndex: number = 0;
   question = signal('');
   answer1 = signal('');

@@ -14,13 +14,3 @@ form select {
   bottom: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-
-.scroll-container {
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 350px;
-  width: 100%;
-  margin: 3%;
-  padding: 1.5%;
-  text-align: center;
-}

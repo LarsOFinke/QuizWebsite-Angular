@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { api_url } from '../../main';
 import { catchError, map, throwError } from 'rxjs';
+import { IQuestion } from '../interfaces/i-question';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { catchError, map, throwError } from 'rxjs';
 export class QuizService {
   private httpClient = inject(HttpClient);
 
-  questions: any = [];
+  questions: {questions: IQuestion[]} | any = [];
   highscores: any = [];
 
   gameMode: string = '';
@@ -58,7 +59,7 @@ export class QuizService {
     question_amount: number
   ) {
     try {
-      const response = await this.httpClient
+      const response: {questions: IQuestion[]} | any = await this.httpClient
         .post(`${api_url}/get-questions`, { mode, modeId, question_amount })
         .toPromise();
       this.questions = response;
