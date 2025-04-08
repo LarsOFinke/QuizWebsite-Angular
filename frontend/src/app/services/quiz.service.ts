@@ -79,6 +79,15 @@ export class QuizService {
     this.questions.questions[qIndex].answerUser = choice;
   }
 
+  fetchQuestionImage(imageId: number) {
+    return this.httpClient.get<Blob>(`/api/serve-image/${imageId}`, {
+      responseType: 'blob' as 'json',  // Ensure you get the image as a Blob
+      headers: {
+        'Accept': 'image/jpeg'  // Tell the server that we expect an image (you can specify image/png if needed)
+      }
+    });
+  }
+
   async processQuizEnd() {
     try {
       const response = await this.httpClient

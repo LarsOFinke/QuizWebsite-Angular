@@ -122,25 +122,29 @@ export class QuizSelectionComponent implements OnInit {
   }
 
   async startCategory() {
-    await this.quizService.fetchQuestions(
-      'categ',
-      this.selectedCategoryId,
-      this.questionAmount
-    );
+    if (this.selectedCategory) {
+      await this.quizService.fetchQuestions(
+        'categ',
+        this.selectedCategoryId,
+        this.questionAmount
+      );
 
-    // SET quizStarted in quiz-page to true
-    this.start.emit();
+      // SET quizStarted in quiz-page to true
+      this.start.emit();
+    }
   }
 
   async startTopic() {
-    await this.quizService.fetchQuestions(
-      'topic',
-      this.selectedTopicId,
-      this.questionAmount
-    );
+    if (this.selectedTopic) {
+      await this.quizService.fetchQuestions(
+        'topic',
+        this.selectedTopicId,
+        this.questionAmount
+      );
 
-    // SET quizStarted in quiz-page to true
-    this.start.emit();
+      // SET quizStarted in quiz-page to true
+      this.start.emit();
+    }
   }
 
   async startFull() {

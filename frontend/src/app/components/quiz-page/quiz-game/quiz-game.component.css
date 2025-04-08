@@ -4,6 +4,9 @@ h2 {
 img {
   width: 50%;
 }
+button {
+  margin: 1.5%;
+}
 
 .btn-medium {
   height: 30px;

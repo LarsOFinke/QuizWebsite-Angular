@@ -3,16 +3,24 @@
     <h2 id="quest-text">{{ question() }}</h2>
 
     <hr />
-    <div class="centered">
-      <!-- url_for('api.serve_image', image_id=1)  -->
-      <img [src]="" alt="Bild zur Frage" />
+    
+    <!-- <div class="centered">
+      <img [src]="questionImage()" alt="Bild zur Frage" />
     </div>
 
-    <hr />
+    <hr /> -->
 
-    <button type="button" class="btn" (click)="answerQuestion(1)">{{ answer1() }}</button>
-    <button type="button" class="btn" (click)="answerQuestion(2)">{{ answer2() }}</button>
-    <button type="button" class="btn" (click)="answerQuestion(3)">{{ answer3() }}</button>
-    <button type="button" class="btn" (click)="answerQuestion(4)">{{ answer4() }}</button>
+    <button type="button" class="btn" (click)="answerQuestion(1)">
+      {{ answer1() }}
+    </button>
+    <button type="button" class="btn" (click)="answerQuestion(2)">
+      {{ answer2() }}
+    </button>
+    <button type="button" class="btn" (click)="answerQuestion(3)">
+      {{ answer3() }}
+    </button>
+    <button type="button" class="btn" (click)="answerQuestion(4)">
+      {{ answer4() }}
+    </button>
   </form>
 </div>

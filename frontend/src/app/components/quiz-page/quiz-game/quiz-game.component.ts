@@ -1,4 +1,11 @@
-import { Component, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
 import { QuizService } from '../../../services/quiz.service';
 import { IQuestion } from '../../../interfaces/i-question';
 
@@ -16,6 +23,7 @@ export class QuizGameComponent implements OnInit {
   questionList: IQuestion[] = [];
   currentQuestionIndex: number = 0;
   question = signal('');
+  questionImage = signal<any>('');
   answer1 = signal('');
   answer2 = signal('');
   answer3 = signal('');
@@ -33,6 +41,7 @@ export class QuizGameComponent implements OnInit {
   }
 
   rotateQuestion() {
+    this.getQuestionImage();
     this.question.set(
       this.questionList[this.currentQuestionIndex].questionText
     );
@@ -51,5 +60,16 @@ export class QuizGameComponent implements OnInit {
     } else {
       this.rotateQuestion();
     }
+  }
+
+  getQuestionImage() {
+    this.quizService
+      .fetchQuestionImage(this.questionList[this.currentQuestionIndex].imageID)
+      .subscribe({
+        next: (image) => {
+          console.log(image);
+          this.questionImage.set(image);
+        },
+      });
   }
 }
