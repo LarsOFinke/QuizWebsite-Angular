@@ -72,11 +72,24 @@ export class HighscoresPageComponent {
     });
   }
 
+  async onModeChange() {
+    if (this.mode === 'full') {
+      await this.quizService.fetchHighscores(
+        this.mode,
+        this.selectedCategoryId,
+        this.selectedTopicId
+      );
+      this.highscores = this.quizService.highscores.highscores;
+    } else {
+      this.highscores = [];
+    }
+  }
+
   async onCategoryChange(selectedValue: string) {
     this.selectedCategoryId = parseInt(selectedValue);
     this.categorySelected = true;
 
-   if (this.categorySelected) {
+    if (this.categorySelected) {
       this.categories
         .call(this.categories)
         .categories.forEach((category: ICategory) => {
@@ -96,10 +109,13 @@ export class HighscoresPageComponent {
         });
     }
 
-    if (this.mode === "categ") {
-      await this.quizService.fetchHighscores(this.mode, this.selectedCategoryId, this.selectedTopicId);
+    if (this.mode === 'categ') {
+      await this.quizService.fetchHighscores(
+        this.mode,
+        this.selectedCategoryId,
+        this.selectedTopicId
+      );
       this.highscores = this.quizService.highscores.highscores;
-      console.log(this.highscores);
     }
   }
 

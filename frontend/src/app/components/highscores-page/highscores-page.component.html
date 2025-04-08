@@ -8,7 +8,12 @@
   <div class="select-wrapper">
     <form>
       <label for="mode">Quizmodus:</label>
-      <select id="mode" name="mode" [(ngModel)]="mode">
+      <select
+        id="mode"
+        name="mode"
+        [(ngModel)]="mode"
+        (ngModelChange)="onModeChange()"
+      >
         <option value="full">Alle Bereiche</option>
         <option value="categ">Kategorie</option>
         <option value="topic">Thema</option>
@@ -62,11 +67,11 @@
         <th>Datum</th>
       </tr>
       @for (entry of highscores; track $index) {
-        <tr>
-          <td>{{ entry.name }}</td>
-          <td>{{ entry.score }}</td>
-          <td>{{ entry.date }}</td>
-        </tr>
+      <tr>
+        <td>{{ entry.name }}</td>
+        <td>{{ entry.score }}</td>
+        <td>{{ entry.date }}</td>
+      </tr>
       }
     </table>
   </div>
