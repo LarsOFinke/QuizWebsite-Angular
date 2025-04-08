@@ -14,7 +14,7 @@ export class QuizService {
   highscores: any = [];
 
   gameMode: string = '';
-  username: string = '';
+  username: string = 'guest';
   categoryId: number = 0;
   topicId: number = 0;
   result: any = 0;
@@ -68,7 +68,7 @@ export class QuizService {
     }
 
     this.gameMode = mode;
-    if (mode === 'category') {
+    if (mode === 'categ') {
       this.categoryId = modeId;
     } else if (mode === 'topic') {
       this.topicId = modeId;

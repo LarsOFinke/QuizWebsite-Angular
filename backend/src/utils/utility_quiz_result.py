@@ -29,12 +29,13 @@ def calculate_quiz_result(question_list) -> float:
     
 
 def add_result_to_highscores(payload, result):
+    print(payload)
     match payload["game_mode"]:
         case "full":
             category_played: str = "full"
             topic_played: str = "full"
             
-        case "category":
+        case "categ":
             category_played: str = get_category_name(int(payload["category_id"]))
             topic_played: str = "all"
             

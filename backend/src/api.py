@@ -47,7 +47,7 @@ def get_questions():
             questions.update(get_all_questions())
             question_list: list[dict] = provide_questions(questions)
         
-        case "category":    ### IMPLEMENT THIS ###
+        case "categ":
             topics: dict = get_topics_by_category(data.get("modeId"))
             
             for topic_id, topic in topics.items():
@@ -82,6 +82,7 @@ def serve_image(image_id: str):
 @api.route("/process-quiz-result", methods=["POST"])
 def process_quiz_result():
     data: dict = request.get_json()
+    print(data)
     
     question_list: list[dict] = data.get("question_list")
     question_list = compare_user_answers_with_correct(question_list)

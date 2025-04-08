@@ -123,7 +123,7 @@ export class QuizSelectionComponent implements OnInit {
 
   async startCategory() {
     await this.quizService.fetchQuestions(
-      'category',
+      'categ',
       this.selectedCategoryId,
       this.questionAmount
     );
@@ -132,7 +132,21 @@ export class QuizSelectionComponent implements OnInit {
     this.start.emit();
   }
 
-  startTopic() {}
+  async startTopic() {
+    await this.quizService.fetchQuestions(
+      'topic',
+      this.selectedTopicId,
+      this.questionAmount
+    );
 
-  startFull() {}
+    // SET quizStarted in quiz-page to true
+    this.start.emit();
+  }
+
+  async startFull() {
+    await this.quizService.fetchQuestions('full', 0, this.questionAmount);
+
+    // SET quizStarted in quiz-page to true
+    this.start.emit();
+  }
 }
